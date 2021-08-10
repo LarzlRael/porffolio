@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import  { useContext } from 'react';
+
 import './App.css';
+import { ThemeContext } from './context/ThemeContext';
+
+import { Layout } from './components/Layouts/Layout';
+import { ThemeColors, darkColorsTheme, lightColorsTheme } from './context/themeColors';
+import styled from 'styled-components';
 
 function App() {
+
+  const { darkTheme } = useContext(ThemeContext);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BackGroundColor
+      themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}
+    >
+
+      <Layout>
+      </Layout>
+
+    </BackGroundColor >
   );
 }
 
 export default App;
+
+
+const BackGroundColor = styled.div<{
+  themeColors: ThemeColors
+}>`
+  background: ${({ themeColors }) => themeColors.background};
+  transition:.3s ease all;
+`;

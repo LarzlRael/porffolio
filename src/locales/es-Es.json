@@ -1,0 +1,13 @@
+{
+    "app.wellcome": "Wellcome, {name}",
+    "app.job" : "Desarrollador de software",
+    "app.whoami" : "¿Quién soy?",
+    "app.home" : "Inicio",
+    "app.technologies" : "Tecnologias",
+    "app.projects" : "Projectos",
+    "app.contact" : "Contacto",
+    "app.name": "Nombre",
+    "app.email": "Email",
+    "app.message": "Mensaje",
+    "app.send": "Enviar"
+}
