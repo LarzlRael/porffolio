@@ -3,14 +3,14 @@ import { useContext } from 'react'
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { ThemeContext } from '../context/ThemeContext';
-import { ThemeColors, lightColorsTheme, darkColorsTheme } from '../context/themeColors';
+import { ThemeColors} from '../context/themeColors';
 import { sizeMedia } from '../styles/mediaQuery';
 import { useWindowSize } from '../hooks/useWindowsSize';
 
 
 export const LinksMenuNavigation = () => {
 
-    const { darkTheme, toogleMenu, ChangeToogleMenu } = useContext(ThemeContext);
+    const { themeColors, toogleMenu, ChangeToogleMenu } = useContext(ThemeContext);
 
     const size = useWindowSize();
 
@@ -26,10 +26,7 @@ export const LinksMenuNavigation = () => {
 
         <LinkContainer
             className={toogleMenu ? 'menu-active' : 'menu-desactive'}
-            darkTheme={darkTheme}
-            themeColors={!darkTheme ?
-                lightColorsTheme :
-                darkColorsTheme}
+            themeColors={themeColors}
         >
 
             <a
@@ -53,6 +50,12 @@ export const LinksMenuNavigation = () => {
             </a>
             <a
                 onClick={() => linkClickeable()}
+                href="#apps">
+                <FormattedMessage
+                    id="app.apps" />
+            </a>
+            <a
+                onClick={() => linkClickeable()}
                 href="#contact">
                 <FormattedMessage
                     id="app.contact" />
@@ -63,7 +66,6 @@ export const LinksMenuNavigation = () => {
 };
 
 const LinkContainer = styled.div<{
-    darkTheme: boolean;
     themeColors: ThemeColors;
 }>`
     a{

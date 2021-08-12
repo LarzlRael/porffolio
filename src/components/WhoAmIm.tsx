@@ -4,11 +4,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { ThemeContext } from '../context/ThemeContext';
 import { sizeMedia } from '../styles/mediaQuery';
+import { ThemeColors } from '../context/themeColors';
 
 export const WhoAmIm = () => {
-    const { darkTheme } = useContext(ThemeContext);
+    const { themeColors } = useContext(ThemeContext);
     return (
-        <WhoIamContainer darkTheme={darkTheme}>
+        <WhoIamContainer themeColors={themeColors}>
             <h3>
                 <FormattedMessage
                     id="app.whoami"
@@ -21,7 +22,7 @@ export const WhoAmIm = () => {
 
 
 const WhoIamContainer = styled.div<{
-    darkTheme: boolean
+    themeColors: ThemeColors,
 }>`
     margin: auto;
     margin-top:40px;
@@ -36,16 +37,17 @@ const WhoIamContainer = styled.div<{
     @media ${sizeMedia('sm')} {
         width: 90%;
         padding: 1rem;
-        margin-top: 0;
+        margin-top: 2rem;
     }
+    
     h3{
         font-size: 1.8rem;
-        color : ${({ darkTheme }) => darkTheme ? '#fff' : '#000'};
+        color : ${({ themeColors }) => themeColors.titleColor};
         text-align: center;
         margin: 1.5rem;
     }
     p{
-        color : ${({ darkTheme }) => darkTheme ? '#fff' : '#5A5A5A'};
+        color : ${({ themeColors }) => themeColors.textColor};
         font-weight: 400;
     }
 `;

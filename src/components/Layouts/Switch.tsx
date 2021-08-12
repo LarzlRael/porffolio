@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import styled from 'styled-components';
 import { ThemeContext } from '../../context/ThemeContext';
-import { darkColorsTheme, lightColorsTheme, ThemeColors } from '../../context/themeColors';
+import { ThemeColors } from '../../context/themeColors';
 import { sizeMedia } from '../../styles/mediaQuery';
 
 export const Switch = () => {
 
-	const { darkTheme, changeTheme } = useContext(ThemeContext);
-	const [activeSwich, setActiveSwich] = useState(false);
+	const { themeColors, changeTheme, darkTheme } = useContext(ThemeContext);
+	const [activeSwich, setActiveSwich] = useState(darkTheme);
 
 	const swithChangeTheme = () => {
 		changeTheme();
@@ -19,7 +19,7 @@ export const Switch = () => {
 			<StyledSwith
 				className={activeSwich ? 'active' : ''}
 				onClick={swithChangeTheme}
-				themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}
+				themeColors={themeColors}
 			>
 				<span><i className="fas fa-sun"></i></span>
 				<span><i className="fas fa-moon"></i></span>
@@ -29,7 +29,7 @@ export const Switch = () => {
 }
 
 const ContainerSwitch = styled.div`
-    width: 55px;
+    /* width: 55px; */
     position:absolute;
     right: 0;
 `;
@@ -80,7 +80,7 @@ const StyledSwith = styled.div<{
 		color: #fff;
 	}
 	@media ${sizeMedia('sm')} {
-        margin :2rem 0;
+        margin :2rem 2rem;	
     }
 
 `;

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 import { ThemeContext } from '../context/ThemeContext';
-import { ThemeColors, lightColorsTheme, darkColorsTheme } from '../context/themeColors';
+import { ThemeColors } from '../context/themeColors';
 import { sizeMedia } from '../styles/mediaQuery';
 
 const linkedin = '/linkedin.png';
@@ -40,11 +40,11 @@ export const Footer = () => {
 
 
 
-    const { darkTheme } = useContext(ThemeContext);
+    const { themeColors } = useContext(ThemeContext);
 
     return (
         <FooterContainer
-            themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}
+            themeColors={themeColors}
         >
             <SocialMediaContainer>
 

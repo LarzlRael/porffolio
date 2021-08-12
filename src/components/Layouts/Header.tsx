@@ -10,13 +10,13 @@ import { LangContext } from '../../context/langContext';
 import { ThemeContext } from '../../context/ThemeContext';
 import { LinksMenuNavigation } from '../LinksMenuNavigation';
 import { sizeMedia } from '../../styles/mediaQuery';
-import { sizeDesktop } from '../../context/themeColors';
+import { sizeDesktop, ThemeColors } from '../../context/themeColors';
 
 
 export const Header = () => {
 
     const { changeLan } = useContext(LangContext);
-    const { darkTheme, ChangeToogleMenu } = useContext(ThemeContext);
+    const { ChangeToogleMenu, themeColors } = useContext(ThemeContext);
 
     return (
 
@@ -60,9 +60,11 @@ export const Header = () => {
                 </h3>
             </NamePresentation>
             <Switch />
-            <ProfileImage size={150} blackTheme={darkTheme} >
+            <ProfileImage size={150}
+                themeColors={themeColors}
+            >
                 <img
-                    src="https://i.redd.it/v0caqchbtn741.jpg" alt="porifle" />
+                    src="https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg" alt="porifle" />
             </ProfileImage>
 
         </HeaderContainer>
@@ -88,9 +90,13 @@ const HeaderContainer = styled.div`
     position:relative;
     scroll-behavior: smooth;    
     @media ${sizeMedia('xs')} {
+        padding: 1rem;
         width: 100%;
     }
     @media ${sizeMedia('sm')} {
+        width: 100%;
+    }
+    @media ${sizeMedia('md')} {
         width: 100%;
     }
     
@@ -140,7 +146,7 @@ const NamePresentation = styled.div`
 
 const ProfileImage = styled.div<{
     size: number,
-    blackTheme: boolean,
+    themeColors: ThemeColors,
 }>`
     
     width: ${({ size }) => size + 'px'} ;
@@ -150,10 +156,14 @@ const ProfileImage = styled.div<{
     border-radius: 50%;
     bottom: calc(-1 * (${({ size }) => size + 'px'} / 2));
 	left: calc(50% - calc(${({ size }) => size + 'px'} / 2));
-    border: 5px solid ${({ blackTheme }) => blackTheme ? '#8980f5' : '#21897e'};
+    border: 5px solid ${({ themeColors }) => themeColors.primaryColor};
     img{
         width: 100%;
         height: 100%;
+    }
+    @media ${sizeMedia('xs')}{
+        left: calc(50% - calc(${({ size }) => size + 'px'} / 2));
+        /* bottom: 0; */
     }
 
 `;

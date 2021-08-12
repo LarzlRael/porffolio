@@ -4,10 +4,13 @@
     "app.whoami": "Who am I?",
     "app.home": "Home",
     "app.technologies": "Technologies",
-    "app.projects": "Projects",
+    "app.projects": "Web Projects",
     "app.contact": "Contact",
     "app.name": "Name",
     "app.email": "Email",
     "app.message": "Message",
-    "app.send": "Send"
+    "app.send": "Send",
+    "app.apps": "Mobile apps",
+    "app.messageSentSuccess": "Message sent successfully",
+    "app.messageSentError": "There was an error sending your email"
 }

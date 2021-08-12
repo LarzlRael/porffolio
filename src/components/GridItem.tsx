@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Tec } from '../interfaces/tec.interface';
 import ReactTooltip from 'react-tooltip';
+import { sizeMedia } from '../styles/mediaQuery';
 
 export const GridItem = ({ imageRoute, name }: Tec) => {
 
@@ -35,13 +36,18 @@ const GridTec = styled.div`
     /* border: 1px solid #cacaca; */
     border-radius: 5px;
     
-    @media (sizeMedia('sm')) {
+    @media ${sizeMedia('sm')} {
         width: 100%;
     }
+    @media ${sizeMedia('md')} {
+        width: 100%;
+    }
+
     &:hover{
         border-radius: 5px;
         border: 0.5px solid #cacaca;
         transition: .5s ease all;
         cursor: pointer;
     }
+    
 `;

@@ -1,21 +1,27 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-import { darkColorsTheme, lightColorsTheme, sizeDesktop, ThemeColors } from '../context/themeColors';
+import { sizeDesktop, ThemeColors } from '../context/themeColors';
 
 import { ThemeContext } from '../context/ThemeContext';
 import { sizeMedia } from '../styles/mediaQuery';
+import { LogoGithub, OpenOutline } from 'react-ionicons';
 
-export const MyProjects = () => {
-    const { darkTheme } = useContext(ThemeContext)
+
+interface Props {
+    formattedMessageid: string;
+    idHref: string;
+}
+export const MyProjects = ({ formattedMessageid, idHref }: Props) => {
+    const { themeColors } = useContext(ThemeContext)
     return (
         <MyProjectsStyles
-            id="projects"
-            themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}
+            id={idHref}
+            themeColors={themeColors}
         >
             <h2>
                 <FormattedMessage
-                    id="app.projects"
+                    id={formattedMessageid}
                 />
             </h2>
             <MyProjectsGrid />
@@ -30,27 +36,69 @@ const MyProjectsGrid = () => {
             <WorksOneGrid />
             <WorksOneGrid />
             <WorksOneGrid />
-            <WorksOneGrid />
-            <WorksOneGrid />
+
 
         </WorkGridContainer>
     )
 }
 
-
+interface ProjectProps {
+    srcImage: string;
+    urlProject: string;
+    urlRepo: string;
+}
 const WorksOneGrid = () => {
-    return (
-        <WorksOneGridContainer>
-            <ContainerImage src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" >
+    const { themeColors } = useContext(ThemeContext)
 
-            </ContainerImage>
+    return (
+        <WorksOneGridContainer
+            themeColors={themeColors}
+            className="pointer"
+        >
+
+            <div className="imageGridContainer">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="project name" />
+
+                <div className="buttonsContainer">
+                    <button
+                        style={{
+                            background: `${themeColors.primaryColor}`
+                        }}
+                    >Ir
+                        &nbsp;
+                        <OpenOutline
+                            color="white"
+                            width="20px"
+                            height="20px"
+                        />
+                    </button>
+                    <button
+                        style={{
+                            background: `${themeColors.primaryColor}`
+                        }}
+                    >
+                        Repositorio
+
+                        <LogoGithub
+                            width="20px"
+                            height="20px"
+                            color="white"
+                        />
+                    </button>
+                </div>
+            </div>
+
+
             <h3>Lorem ipsum dolor</h3>
             <span>Html Css Js</span>
         </WorksOneGridContainer>
     )
 }
 
-const WorksOneGridContainer = styled.div`
+const WorksOneGridContainer = styled.div
+    <{
+        themeColors: ThemeColors,
+    }>`
     width: 235px;
     height: 300px;
     border-radius: 5px 5px 0 0;
@@ -64,7 +112,7 @@ const WorksOneGridContainer = styled.div`
     
     h3{
         font-size: 1rem;
-        color:#3895EA;
+        color:${({ themeColors }) => themeColors.primaryColor};
         margin: 10px 0;
     }
     span{
@@ -100,15 +148,34 @@ const WorkGridContainer = styled.div`
         width: 100%;      
     }
     @media ${sizeMedia('sm')} {
+        margin: auto;
         width: 90%;
     }
+    @media ${sizeMedia('md')} {
+
+        width: 90%;
+    }
+    
 `;
 
-const ContainerImage = styled.img`
+/* const ImageContainer = styled.div`
     width: 100%;
     height: 235px;
-    
-    border-radius: 5px;
-    
+    position: relative;
+    img{
+        width: 100%;
+        height: 235px;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: transform .5s, visibility .5s ease-in;
+    &:hover{
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+    div{
+        width: 100px;
+        background:red;
+    }
 
-`;
+}
+`; */

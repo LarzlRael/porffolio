@@ -34,11 +34,11 @@ export const InfoGridsTec: Tec[] = [
     },
     {
         imageRoute: html5,
-        name: 'Html5'
+        name: 'Html 5'
     },
     {
         imageRoute: css3,
-        name: 'Css3'
+        name: 'Css 3'
     },
     {
         imageRoute: sass,
@@ -70,7 +70,7 @@ export const InfoGridsTec: Tec[] = [
     },
     {
         imageRoute: nest,
-        name: 'Nest',
+        name: 'Nest JS',
     },
 
 ]

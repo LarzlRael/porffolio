@@ -1,19 +1,19 @@
-import  { useContext } from 'react';
+import { useContext } from 'react';
 
 import './App.css';
 import { ThemeContext } from './context/ThemeContext';
 
 import { Layout } from './components/Layouts/Layout';
-import { ThemeColors, darkColorsTheme, lightColorsTheme } from './context/themeColors';
+import { ThemeColors } from './context/themeColors';
 import styled from 'styled-components';
 
 function App() {
 
-  const { darkTheme } = useContext(ThemeContext);
-  
+  const { themeColors } = useContext(ThemeContext);
+
   return (
     <BackGroundColor
-      themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}
+      themeColors={themeColors}
     >
 
       <Layout>

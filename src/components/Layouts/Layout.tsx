@@ -6,7 +6,7 @@ import { WhoAmIm } from '../WhoAmIm';
 import { TecnologiesGrids } from '../TecnologiesGrids';
 import { MyProjects } from '../MyProjects';
 import { FormContact } from '../FormContact';
-import { darkColorsTheme, lightColorsTheme, ThemeColors } from '../../context/themeColors';
+import { ThemeColors } from '../../context/themeColors';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Footer } from '../Footer';
 import styled from 'styled-components';
@@ -18,17 +18,18 @@ interface LayoutProps {
     children: React.ReactNode,
 }
 export const Layout = ({ children }: LayoutProps) => {
-    const { darkTheme } = useContext(ThemeContext);
+    const { themeColors } = useContext(ThemeContext);
     return (
         <>
-            <MainLayout darkTheme={darkTheme}
-                themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}>
+            <MainLayout
+                themeColors={themeColors}>
                 <Header />
             </MainLayout>
             <WhoAmIm />
             <TecnologiesGrids />
 
-            <MyProjects />
+            <MyProjects formattedMessageid="app.projects" idHref="projects" />
+            <MyProjects formattedMessageid="app.apps" idHref="apps" />
             <FormContact />
             <Footer />
         </>
@@ -37,7 +38,6 @@ export const Layout = ({ children }: LayoutProps) => {
 
 
 const MainLayout = styled.div<{
-    darkTheme: boolean,
     themeColors: ThemeColors,
 }>`
     width: 100%;

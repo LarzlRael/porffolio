@@ -5,16 +5,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { GridItem } from './GridItem';
 import { InfoGridsTec } from '../data/dataTec';
 import { FormattedMessage } from 'react-intl';
-import { ThemeColors, lightColorsTheme, darkColorsTheme, sizeDesktop } from '../context/themeColors';
+import { ThemeColors, sizeDesktop } from '../context/themeColors';
 import { ThemeContext } from '../context/ThemeContext';
 import { sizeMedia } from '../styles/mediaQuery';
 
 export const TecnologiesGrids = () => {
-    
-    const { darkTheme } = useContext(ThemeContext);
+
+    const { themeColors } = useContext(ThemeContext);
     return (
         <TecContainer id="tecnologies"
-            themeColors={darkTheme ? darkColorsTheme : lightColorsTheme}
+            themeColors={themeColors}
         >
             <h2>
                 <FormattedMessage
@@ -31,7 +31,7 @@ export const TecnologiesGrids = () => {
                             name={info.name}
                             key={uuidv4()}
                         />
-                        
+
                     </>
                 ))}
 
@@ -78,6 +78,9 @@ const GridContainerSytyle = styled.div`
         width: 90%;
     }
     @media ${sizeMedia('sm')} {
+        width: 90%;
+    }
+    @media ${sizeMedia('md')} {
         width: 90%;
     }
 `;
