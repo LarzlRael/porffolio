@@ -8,11 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { RefreshCircleOutline } from 'react-ionicons';
 
+import styled from 'styled-components';
+
 
 export const FormContact = () => {
 
     const intl = useIntl();
-    const { themeColors } = useContext(ThemeContext);
+    const { themeColors, darkTheme } = useContext(ThemeContext);
 
     const { email, name, message, onChange } = useForm({
         email: '',
@@ -96,18 +98,14 @@ export const FormContact = () => {
                 >
                 </textarea>
                 <div className="button-container">
-                    <button
-                        className="pointer"
-                        style={{
-                            background: themeColors.primaryColor
-                        }}
+                    <button className={`buttonSend pointer ${darkTheme ? 'light' : 'dark'}`}
                         disabled={sending}
                     >
                         {!sending ? <FormattedMessage
                             id="app.send"
                         /> : <RefreshCircleOutline
-                            width="25px"
-                            height="25px"
+                            width="80px"
+                            height="30px"
                             color="white"
                             rotate
                         />}
@@ -119,3 +117,5 @@ export const FormContact = () => {
         </div>
     )
 }
+
+

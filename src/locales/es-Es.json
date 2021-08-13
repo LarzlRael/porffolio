@@ -12,5 +12,7 @@
     "app.send": "Enviar",
     "app.apps": "Aplicaciones móviles",
     "app.messageSentSuccess": "Mensaje enviado correctamente ",
-    "app.messageSentError": "Hubo un error al enviar su email"
+    "app.messageSentError": "Hubo un error al enviar su email",
+    "app.go": "Ir",
+    "app.repo": "Repositorio"
 }

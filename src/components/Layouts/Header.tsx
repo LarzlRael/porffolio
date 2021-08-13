@@ -115,6 +115,7 @@ const NamePresentation = styled.div`
     padding: 25px;
     width: 450px;
     border: 2px solid #fff;
+    position: relative;
     
     text-align: center;
 

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { sizeDesktop, ThemeColors } from '../context/themeColors';
@@ -6,6 +6,8 @@ import { sizeDesktop, ThemeColors } from '../context/themeColors';
 import { ThemeContext } from '../context/ThemeContext';
 import { sizeMedia } from '../styles/mediaQuery';
 import { LogoGithub, OpenOutline } from 'react-ionicons';
+import { getAllProjects } from '../services/projectsServices';
+import { ProjectsResponse } from '../interfaces/tec.interface';
 
 
 interface Props {
@@ -29,26 +31,36 @@ export const MyProjects = ({ formattedMessageid, idHref }: Props) => {
     )
 }
 const MyProjectsGrid = () => {
+    const [projectsState, seTprojectsState] = useState<ProjectsResponse[]>();
+    const loadProjects = async () => {
+        const projects = await getAllProjects();
+        seTprojectsState(projects)
+    }
+
+    useEffect(() => {
+        loadProjects();
+    }, [])
     return (
         <WorkGridContainer>
 
-            <WorksOneGrid />
-            <WorksOneGrid />
-            <WorksOneGrid />
-            <WorksOneGrid />
+            {
+                projectsState?.map((project) => (
+                    <WorksOneGrid {...project} />
+                ))
+            }
 
 
         </WorkGridContainer>
     )
 }
 
-interface ProjectProps {
-    srcImage: string;
-    urlProject: string;
-    urlRepo: string;
-}
-const WorksOneGrid = () => {
+
+const WorksOneGrid = ({ ...project }: ProjectsResponse) => {
     const { themeColors } = useContext(ThemeContext)
+
+    const goTo = (url: string) => {
+        window.open(url, "_blank");
+    }
 
     return (
         <WorksOneGridContainer
@@ -57,14 +69,17 @@ const WorksOneGrid = () => {
         >
 
             <div className="imageGridContainer">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="project name" />
+                <img src={project.urlImageProject ? project.urlImageProject : 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-no-image-available-icon-flat.jpg'} alt={project.name} />
 
                 <div className="buttonsContainer">
                     <button
                         style={{
                             background: `${themeColors.primaryColor}`
                         }}
-                    >Ir
+                        onClick={() => goTo(project.urlProject)}
+                    >
+                        <FormattedMessage
+                            id="app.go" />
                         &nbsp;
                         <OpenOutline
                             color="white"
@@ -76,8 +91,10 @@ const WorksOneGrid = () => {
                         style={{
                             background: `${themeColors.primaryColor}`
                         }}
+                        onClick={() => goTo(project.repositoryUrl)}
                     >
-                        Repositorio
+                        <FormattedMessage
+                            id="app.repo" />
 
                         <LogoGithub
                             width="20px"
@@ -89,8 +106,8 @@ const WorksOneGrid = () => {
             </div>
 
 
-            <h3>Lorem ipsum dolor</h3>
-            <span>Html Css Js</span>
+            <h3>{project.name}</h3>
+            <span>{project.technologies}</span>
         </WorksOneGridContainer>
     )
 }

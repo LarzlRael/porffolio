@@ -24,9 +24,7 @@ export const GridItem = ({ imageRoute, name }: Tec) => {
                 id={name}
                 place="top"
                 effect="solid">
-
                 {name}
-
             </ReactTooltip>
         </GridTec>
     )

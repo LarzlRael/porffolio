@@ -1,5 +1,7 @@
 @import "./mediaQueries";
 
+$primaryColorLight: #21897e;
+$primaryColorDark: #8980f5;
 html,
 body {
 	padding: 0;
@@ -68,16 +70,32 @@ a {
 	.button-container {
 		display: flex;
 		justify-content: center;
-		button {
-			padding: 20px 50px;
-			border-radius: 5px;
-			background: #3895ea;
-			color: white;
-			border: none;
-			font-size: 20px;
-			text-align: center;
+	}
+
+	.buttonSend {
+		padding: 20px 50px;
+		border-radius: 5px;
+		overflow: hidden;
+		/* background: ${({ backGroundColor }) => backGroundColor}; */
+		color: white;
+		border: none;
+		font-size: 20px;
+		text-align: center;
+		transition: 0.3s ease all;
+		&.light {
+			background: $primaryColorLight;
+			&:hover {
+				background: darken($primaryColorLight, 15%);
+			}
+		}
+		&.dark {
+			background: $primaryColorDark;
+			&:hover {
+				background: darken($primaryColorDark, 15%);
+			}
 		}
 	}
+
 	@include media(sm) {
 		width: 100%;
 		.flex {
@@ -206,7 +224,6 @@ a {
 			color: white;
 			border: none;
 			border-radius: 5px;
-			background: red;
 			cursor: pointer;
 			display: flex;
 			align-items: center;
