@@ -11,6 +11,7 @@ import { ThemeContext } from '../../context/ThemeContext';
 import { Footer } from '../Footer';
 import styled from 'styled-components';
 import { sizeMedia } from '../../styles/mediaQuery';
+import { useGetProjectsByType } from '../../hooks/useGetProjects';
 
 
 
@@ -19,6 +20,8 @@ interface LayoutProps {
 }
 export const Layout = ({ children }: LayoutProps) => {
     const { themeColors } = useContext(ThemeContext);
+    const { projectsStateByType } = useGetProjectsByType('web');;
+    const { projectsStateByType: projectsStateByTypeApp } = useGetProjectsByType('app');
     return (
         <>
             <MainLayout
@@ -28,8 +31,8 @@ export const Layout = ({ children }: LayoutProps) => {
             <WhoAmIm />
             <TecnologiesGrids />
 
-            <MyProjects formattedMessageid="app.projects" idHref="projects" />
-            <MyProjects formattedMessageid="app.apps" idHref="apps" />
+            <MyProjects projects={projectsStateByType!} formattedMessageid="app.projects" idHref="projects" />
+            <MyProjects projects={projectsStateByTypeApp!} formattedMessageid="app.apps" idHref="apps" />
             <FormContact />
             <Footer />
         </>
@@ -40,9 +43,13 @@ export const Layout = ({ children }: LayoutProps) => {
 const MainLayout = styled.div<{
     themeColors: ThemeColors,
 }>`
-    width: 100%;
-    background:url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80') center/cover;
     position: relative;
+    width: 100%;
+    background: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80') center / cover;
+
+    
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 
     &:before {
         content:"";
@@ -55,7 +62,8 @@ const MainLayout = styled.div<{
         height: 100%;
     }
     
-    @media ${sizeMedia('xs')} {
+    @media ${sizeMedia('xs_sm')} {
+
         width: 100vw;
         height: 100vh;
     }

@@ -3,15 +3,25 @@ const sm = '360px';
 const md = '768px';
 const lg = '1024px';
 
+export enum Sizes {
+    xs_sm = 'xs_sm',
+    xs = 'xs',
+    sm = 'sm',
+    md = 'md',
+    lg = 'lg',
+  }
+   
 
 
-export const sizeMedia = (media: string): string => {
+export const sizeMedia = (media: keyof typeof Sizes): string => {
     /*  
     @media ${sizeMedia('xs')} {
          padding-top: 1rem;
      }
     */
     switch (media) {
+        case 'xs_sm':
+            return `( max-width: ${md} )`
         case 'xs':
             return `( max-width: ${sm} )`
         case 'sm':
@@ -24,3 +34,4 @@ export const sizeMedia = (media: string): string => {
             return `( min-width: ${lg} )`
     }
 }
+

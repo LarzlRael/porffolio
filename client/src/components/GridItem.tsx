@@ -13,6 +13,7 @@ export const GridItem = ({ imageRoute, name }: Tec) => {
     return (
         <GridTec data-tip data-for={name}>
             <img
+                loading="lazy"
                 src={imageRoute}
                 style={{
                     width: '100%',
@@ -32,7 +33,7 @@ export const GridItem = ({ imageRoute, name }: Tec) => {
 const GridTec = styled.div`
     /* width: 120px;*/
     /* border: 1px solid #cacaca; */
-    border-radius: 5px;
+    border-radius: 100px;
     
     @media ${sizeMedia('sm')} {
         width: 100%;

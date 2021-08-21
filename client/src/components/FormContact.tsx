@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { RefreshCircleOutline } from 'react-ionicons';
 
-import styled from 'styled-components';
 
 
 export const FormContact = () => {
@@ -78,20 +77,31 @@ export const FormContact = () => {
             <form onSubmit={onHandleSubmit}>
                 <div className="flex">
                     <input
+                        className={!darkTheme ? 'dark' : 'light'}
                         type="text"
                         placeholder={intl.formatMessage({ id: 'app.name' })}
                         onChange={({ target }) => onChange(target.value, 'name')}
                         value={name}
+                    /* outline: 'none! important'
+                        border: '1px solid red';
+                        box-s: 0 0 10px #719ECE; */
+                    /* style={{
+                        outline: 'none! important',
+                        border: '1px solid red',
+                        boxShadow: '0 0 10px #719ECE;'
+                    }} */
                     />
                     <input
                         type="email"
+                        className={!darkTheme ? 'dark' : 'light'}
+
                         placeholder={intl.formatMessage({ id: 'app.email' })}
                         onChange={({ target }) => onChange(target.value, 'email')}
                         value={email}
                     />
                 </div>
                 <textarea
-                    className="area"
+                    className= {!darkTheme ? 'area dark' : 'area light'}
                     placeholder={intl.formatMessage({ id: 'app.message' })}
                     onChange={({ target }) => onChange(target.value, 'message')}
                     value={message}

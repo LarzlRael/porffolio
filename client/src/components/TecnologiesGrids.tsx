@@ -23,7 +23,6 @@ export const TecnologiesGrids = () => {
             </h2>
 
             <GridContainer>
-
                 {InfoGridsTec.map((info) => (
                     <>
                         <GridItem
@@ -59,11 +58,16 @@ const TecContainer = styled.div<{
     background: ${({ themeColors }) => themeColors.backgroundGrids};
     transition: .3s ease all;
     padding: 3rem 0;
+    
     h2{
         color: ${({ themeColors }) => themeColors.titleColor};
         font-size:24px;
         text-align: center;
         padding-bottom: 30px;
+    }
+    @media ${sizeMedia('xs')} {
+        padding: 1.5rem 1.5rem;
+
     }
 `;
 
@@ -72,12 +76,9 @@ const GridContainerSytyle = styled.div`
     margin: auto;
     display: grid;
     gap: 3.7rem;
-    grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
     
-    @media ${sizeMedia('xs')} {
-        width: 90%;
-    }
-    @media ${sizeMedia('sm')} {
+    @media ${sizeMedia('xs_sm')} {
         width: 90%;
     }
     @media ${sizeMedia('md')} {

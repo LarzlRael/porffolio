@@ -90,7 +90,7 @@ const FooterContainer = styled.footer<{
     display: flex;
     align-items: center;
 
-    @media ${sizeMedia('xs')} {
+    @media ${sizeMedia('xs_sm')} {
         padding: 1.5rem;  
         height: auto;
     }
@@ -104,7 +104,7 @@ const SocialMediaContainer = styled.div`
     align-items: center;
     justify-items: center;
     
-    grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
 
     @media (max-width: 360px) {
         width: 100%;

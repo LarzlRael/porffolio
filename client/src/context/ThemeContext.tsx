@@ -24,8 +24,11 @@ const ThemeProvider = ({ children }: any) => {
         themeState = false;
     }
 
+
+
     const [darkTheme, setDarkTheme] = useState(themeState);
     const [toogleMenu, SetToogleMenu] = useState(true);
+    /*  */
     const [themeColors, setThemeColors] = useState<ThemeColors>(themeState ? lightColorsTheme : darkColorsTheme);
 
     const changeTheme = () => {

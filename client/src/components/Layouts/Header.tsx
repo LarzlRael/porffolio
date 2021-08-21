@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { Menu } from 'react-ionicons';
 
-
 import { Switch } from './Switch';
 import { FormattedMessage } from 'react-intl';
 import { LangContext } from '../../context/langContext';
@@ -78,8 +77,8 @@ const BoxHeaderTitle = styled.div`
     padding-top: 3rem;
     align-content:center;
     align-items:center;
-    @media ${sizeMedia('xs')} {
-        padding-top: 1rem;
+    @media ${sizeMedia('xs_sm')} {
+        padding-top: 0;
     }
 `;
 
@@ -89,11 +88,8 @@ const HeaderContainer = styled.div`
     margin:auto;
     position:relative;
     scroll-behavior: smooth;    
-    @media ${sizeMedia('xs')} {
+    @media ${sizeMedia('xs_sm')} {
         padding: 1rem;
-        width: 100%;
-    }
-    @media ${sizeMedia('sm')} {
         width: 100%;
     }
     @media ${sizeMedia('md')} {
@@ -119,8 +115,9 @@ const NamePresentation = styled.div`
     
     text-align: center;
 
-    @media ${sizeMedia('sm')} {
-        width: 90%;
+    @media ${sizeMedia('xs_sm')} {
+        margin-top: 1.5rem;
+        width: 100%;
         padding: 1rem;
         h2{
             font-size: 36px;
@@ -162,9 +159,9 @@ const ProfileImage = styled.div<{
         width: 100%;
         height: 100%;
     }
-    @media ${sizeMedia('xs')}{
-        left: calc(50% - calc(${({ size }) => size + 'px'} / 2));
-        /* bottom: 0; */
+    @media ${sizeMedia('xs_sm')}{
+        position: relative;
+        margin-top: 0;
     }
 
 `;

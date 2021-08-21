@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { ThemeContext } from '../context/ThemeContext';
-import { ThemeColors} from '../context/themeColors';
+import { ThemeColors } from '../context/themeColors';
 import { sizeMedia } from '../styles/mediaQuery';
 import { useWindowSize } from '../hooks/useWindowsSize';
 
@@ -72,8 +72,11 @@ const LinkContainer = styled.div<{
         color:white;
         margin-left: 30px;
         font-family:'Open Sans';
+        &:hover{
+            color: #2a2a2a;
+        }
     }
-    @media ${sizeMedia('xs')} {
+    @media ${sizeMedia('xs_sm')} {
         transition: .3s ease all;
         display: flex;
         flex-direction: column;
@@ -88,19 +91,5 @@ const LinkContainer = styled.div<{
         left: 0;
         top: 0;
     }
-    @media ${sizeMedia('sm')} {
-        width: 100vw;
-        height: 100vh;
-        transition: .3s ease all;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        z-index:100;
-        justify-content: space-around;
-        background: ${({ themeColors }) => themeColors.primaryColor};
-        align-items: center;
-        opacity: 0.9;
-        left: 0;
-        top: 0;
-    }
+    
 `;

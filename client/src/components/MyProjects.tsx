@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { sizeDesktop, ThemeColors } from '../context/themeColors';
@@ -6,43 +6,55 @@ import { sizeDesktop, ThemeColors } from '../context/themeColors';
 import { ThemeContext } from '../context/ThemeContext';
 import { sizeMedia } from '../styles/mediaQuery';
 import { LogoGithub, OpenOutline } from 'react-ionicons';
-import { getAllProjects } from '../services/projectsServices';
 import { ProjectsResponse } from '../interfaces/tec.interface';
 
 
 interface Props {
     formattedMessageid: string;
     idHref: string;
+    projects: ProjectsResponse[],
 }
-export const MyProjects = ({ formattedMessageid, idHref }: Props) => {
+export const MyProjects = ({ formattedMessageid, idHref, projects }: Props) => {
     const { themeColors } = useContext(ThemeContext)
     return (
         <MyProjectsStyles
             id={idHref}
             themeColors={themeColors}
         >
-            <h2>
-                <FormattedMessage
-                    id={formattedMessageid}
-                />
-            </h2>
-            <MyProjectsGrid />
+            <div className="title">
+                <h2
+                    style={{
+                        color: themeColors.titleColor,
+                    }}
+                >
+                    <FormattedMessage
+                        id={formattedMessageid}
+                    />
+
+                </h2>
+                {idHref === 'apps' ?
+
+                    <img src="https://img.icons8.com/material-rounded/50/666666/ios-development.png" alt="" />
+                    :
+                    <img src="./web11.png" alt="" />
+                }
+            </div>
+
+
+            <MyProjectsGrid projectsState={projects} />
+
+
         </MyProjectsStyles>
     )
 }
-const MyProjectsGrid = () => {
-    const [projectsState, seTprojectsState] = useState<ProjectsResponse[]>();
-    const loadProjects = async () => {
-        const projects = await getAllProjects();
-        seTprojectsState(projects)
-    }
+interface MyProjectsGridProps {
+    projectsState: ProjectsResponse[];
+}
+const MyProjectsGrid = ({ projectsState }: MyProjectsGridProps) => {
 
-    useEffect(() => {
-        loadProjects();
-    }, [])
+
     return (
         <WorkGridContainer>
-
             {
                 projectsState?.map((project) => (
                     <WorksOneGrid {...project} />
@@ -69,7 +81,7 @@ const WorksOneGrid = ({ ...project }: ProjectsResponse) => {
         >
 
             <div className="imageGridContainer">
-                <img src={project.urlImageProject ? project.urlImageProject : 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-no-image-available-icon-flat.jpg'} alt={project.name} />
+                <img src={project.urlImageProject ? project.urlImageProject : 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-no-image-available-icon-flat.jpg'} alt={project.name} loading="lazy" />
 
                 <div className="buttonsContainer">
                     <button
@@ -121,7 +133,7 @@ const WorksOneGridContainer = styled.div
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     text-align: center;
-    @media ${sizeMedia('xs')} {
+    @media ${sizeMedia('xs_sm')} {
         width: 90%;
         height: 100%;
         margin: auto;
@@ -147,11 +159,18 @@ const MyProjectsStyles = styled.div<{
     
     background: ${({ themeColors }) => themeColors.backgroundGrids};
     margin-top: 90px;
-    h2{
-        color:  ${({ themeColors }) => themeColors.titleColor};
+    .title{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content:center;
+        align-items: center;
         padding-top: 2rem;
         padding-bottom: 2rem;
-        text-align: center;
+        
+        h2{
+            color:  ${({ themeColors }) => themeColors.titleColor};
+            text-align: center;
+        }
     }
 `;
 const WorkGridContainer = styled.div`

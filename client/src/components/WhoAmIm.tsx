@@ -29,16 +29,16 @@ const WhoIamContainer = styled.div<{
     width: 740px;
     padding: 30px;
 
-    @media ${sizeMedia('xs')} {
+    @media ${sizeMedia('xs_sm')} {
         width: 90%;
         padding: 1rem;
         margin-top: 0;
     }
-    @media ${sizeMedia('sm')} {
+    /* @media ${sizeMedia('sm')} {
         width: 90%;
         padding: 1rem;
         margin-top: 2rem;
-    }
+    } */
     
     h3{
         font-size: 1.8rem;

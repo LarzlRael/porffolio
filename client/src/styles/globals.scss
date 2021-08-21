@@ -2,6 +2,7 @@
 
 $primaryColorLight: #21897e;
 $primaryColorDark: #8980f5;
+$shadow-input: 5px;
 html,
 body {
 	padding: 0;
@@ -58,6 +59,20 @@ a {
 			&:nth-child(1) {
 				margin-right: 1rem;
 			}
+			&.light {
+				&:focus {
+					outline: none !important;
+					border: 1px solid $primaryColorLight;
+					box-shadow: 0 0 $shadow-input $primaryColorLight;
+				}
+			}
+			&.dark {
+				&:focus {
+					outline: none !important;
+					border: 1px solid $primaryColorDark;
+					box-shadow: 0 0 $shadow-input $primaryColorDark;
+				}
+			}
 		}
 	}
 	.area {
@@ -66,6 +81,20 @@ a {
 		height: 200px;
 		padding: 20px;
 		resize: none;
+		&.light {
+			&:focus {
+				outline: none !important;
+				border: 1px solid $primaryColorLight;
+				box-shadow: 0 0 $shadow-input $primaryColorLight;
+			}
+		}
+		&.dark {
+			&:focus {
+				outline: none !important;
+				border: 1px solid $primaryColorDark;
+				box-shadow: 0 0 $shadow-input $primaryColorDark;
+			}
+		}
 	}
 	.button-container {
 		display: flex;
