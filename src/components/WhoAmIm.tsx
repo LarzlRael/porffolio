@@ -1,30 +1,31 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import styled from 'styled-components'
+import { FormattedMessage } from 'react-intl'
 
-import { ThemeContext } from '../context/ThemeContext';
-import { sizeMedia } from '../styles/mediaQuery';
-import { ThemeColors } from '../context/themeColors';
+import { ThemeContext } from '../context/ThemeContext'
+import { sizeMedia } from '../styles/mediaQuery'
+import { ThemeColors } from '../context/themeColors'
 
 export const WhoAmIm = () => {
-    const { themeColors } = useContext(ThemeContext);
-    return (
-        <WhoIamContainer themeColors={themeColors}>
-            <h3>
-                <FormattedMessage
-                    id="app.whoami"
-                />
-            </h3>
-            <p><FormattedMessage
-                id="app.about"
-            /></p>
-        </WhoIamContainer>
-    )
+  const { themeColors } = useContext(ThemeContext)
+  return (
+    <WhoIamContainer themeColors={themeColors}>
+      <h3>
+        <FormattedMessage id="app.whoami" />
+      </h3>
+      <p
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        <FormattedMessage id="app.about" />
+      </p>
+    </WhoIamContainer>
+  )
 }
 
-
 const WhoIamContainer = styled.div<{
-    themeColors: ThemeColors,
+  themeColors: ThemeColors
 }>`
     margin: auto;
     margin-top:40px;
@@ -52,4 +53,4 @@ const WhoIamContainer = styled.div<{
         color : ${({ themeColors }) => themeColors.textColor};
         font-weight: 400;
     }
-`;
+`

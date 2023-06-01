@@ -72,8 +72,10 @@ const LinkContainer = styled.div<{
     color: white;
     margin-left: 30px;
     font-family: 'Open Sans';
+    transition: 0.3s ease all;
     &:hover {
       color: #2a2a2a;
+      font-weight: 700;
     }
   }
   @media ${sizeMedia('xs_sm')} {
