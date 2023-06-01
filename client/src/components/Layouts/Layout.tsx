@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-
-
 import { Header } from './Header';
 import { WhoAmIm } from '../WhoAmIm';
 import { TecnologiesGrids } from '../TecnologiesGrids';

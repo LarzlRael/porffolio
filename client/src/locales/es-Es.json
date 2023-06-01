@@ -3,7 +3,7 @@
     "app.job" : "Desarrollador de software",
     "app.whoami" : "¿Quién soy?",
     "app.home" : "Inicio",
-    "app.technologies" : "Tecnologias",
+    "app.technologies" : "Tecnologías",
     "app.projects" : "Proyectos Web",
     "app.contact" : "Contacto",
     "app.name": "Nombre",
@@ -14,5 +14,6 @@
     "app.messageSentSuccess": "Mensaje enviado correctamente ",
     "app.messageSentError": "Hubo un error al enviar su email",
     "app.go": "Ir",
-    "app.repo": "Repositorio"
+    "app.repo": "Repositorio",
+    "app.about": "Soy un estudiante eterno apasionado con el desarrollo de software y la tecnología."
 }

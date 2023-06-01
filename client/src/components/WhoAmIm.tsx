@@ -15,7 +15,9 @@ export const WhoAmIm = () => {
                     id="app.whoami"
                 />
             </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, ipsam! Vitae at dolor amet ipsum eaque consequatur eveniet enim asperiores aliquid doloremque, maxime corrupti porro iste qui esse iusto nemo.</p>
+            <p><FormattedMessage
+                id="app.about"
+            /></p>
         </WhoIamContainer>
     )
 }

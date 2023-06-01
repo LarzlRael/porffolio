@@ -7,7 +7,8 @@ type AuthContexsProps = {
     darkTheme: boolean;
     toogleMenu: boolean;
     themeColors: ThemeColors;
-    ChangeToogleMenu: () => void;
+    closeMenu: () => void;
+    openMenu: () => void;
 }
 
 const ThemeContext = createContext({} as AuthContexsProps);
@@ -40,8 +41,11 @@ const ThemeProvider = ({ children }: any) => {
         }
         localStorage.setItem('dark-mode', JSON.stringify(!darkTheme));
     }
-    const ChangeToogleMenu = () => {
-        SetToogleMenu(!toogleMenu);
+    const closeMenu = () => {
+        SetToogleMenu(false);
+    }
+    const openMenu = () => {
+        SetToogleMenu(true);
     }
     return (
         <ThemeContext.Provider
@@ -49,7 +53,8 @@ const ThemeProvider = ({ children }: any) => {
                 changeTheme,
                 darkTheme,
                 toogleMenu,
-                ChangeToogleMenu,
+                closeMenu,
+                openMenu,
                 themeColors
             }}
         >

@@ -15,7 +15,8 @@ import { sizeDesktop, ThemeColors } from '../../context/themeColors';
 export const Header = () => {
 
     const { changeLan } = useContext(LangContext);
-    const { ChangeToogleMenu, themeColors } = useContext(ThemeContext);
+    const { toogleMenu, closeMenu, openMenu, themeColors, } = useContext(ThemeContext);
+
 
     return (
 
@@ -36,7 +37,7 @@ export const Header = () => {
 
                     <div
                         className="menuicon"
-                        onClick={ChangeToogleMenu}
+                        onClick={toogleMenu ? closeMenu : openMenu}
                     >
                         <Menu
                             color={'#FFFFFF'}

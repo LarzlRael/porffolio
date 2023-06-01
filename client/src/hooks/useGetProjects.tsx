@@ -13,13 +13,14 @@ export const useGetProjects = () => {
 
     useEffect(() => {
         loadProjects();
-    }, [])
+    }, []);
 
     return { projectsState }
 }
 
 export const useGetProjectsByType = (type: string = 'web') => {
 
+    const width = 300;
     const [projectsStateByType, seTprojectsState] = useState<ProjectsResponse[]>();
     const loadProjects = async () => {
         const data = await getAllProjectsByType(type);
@@ -27,18 +28,15 @@ export const useGetProjectsByType = (type: string = 'web') => {
 
             const splitString = item.urlImageProject.split('upload/');
 
-            let resizeImage = `${splitString[0]}upload/c_scale,w_300/${splitString[1]}`
-            return { ...item, urlImageProject: resizeImage, }
+            let resizeImage = `${splitString[0]}upload/c_scale,w_${width}/${splitString[1]}`
+            return { ...item, image: resizeImage, }
         });
-        /* console.log(newArray); */
-
-        /* console.log(data);resizeImage */
         seTprojectsState(arrayConvert);
     }
 
     useEffect(() => {
         loadProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return { projectsStateByType }
