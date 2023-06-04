@@ -5,7 +5,7 @@ import { sizeDesktop, ThemeColors } from '../context/themeColors'
 
 import { ThemeContext } from '../context/ThemeContext'
 import { sizeMedia } from '../styles/mediaQuery'
-/* import { LogoGithub, OpenOutline } from 'react-ionicons'; */
+
 import { IoLogoGithub, IoOpenOutline } from 'react-icons/io5'
 import { ProjectsResponse } from '../interfaces/tec.interface'
 
@@ -100,8 +100,7 @@ const WorksOneGrid = ({
             onClick={() => goTo(urlProject)}
           >
             <FormattedMessage id="app.go" />
-            &nbsp;
-            <IoOpenOutline color="white" width="20px" height="20px" />
+            <IoOpenOutline color="white" size="20" />
           </button>
           <button
             style={{
@@ -110,8 +109,7 @@ const WorksOneGrid = ({
             onClick={() => goTo(repositoryUrl)}
           >
             <FormattedMessage id="app.repo" />
-
-            <IoLogoGithub width="20px" height="20px" color="white" />
+            <IoLogoGithub size="20" color="white" />
           </button>
         </div>
       </div>

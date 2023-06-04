@@ -45,7 +45,7 @@ export const Header = () => {
       </BoxHeaderTitle>
 
       <NamePresentation>
-        <h2>Reynaldo Larz</h2>
+        <h2>Larz Dev</h2>
         <h3>
           <FormattedMessage id="app.job" />
         </h3>
