@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ThemeContext } from '../../context/ThemeContext'
 import { ThemeColors } from '../../context/themeColors'
 import { sizeMedia } from '../../styles/mediaQuery'
-
+import { FaSun, FaMoon } from 'react-icons/fa'
 export const Switch = () => {
   const { themeColors, changeTheme, darkTheme } = useContext(ThemeContext)
   const [activeSwich, setActiveSwich] = useState(darkTheme)
@@ -21,10 +21,10 @@ export const Switch = () => {
         themeColors={themeColors}
       >
         <span>
-          <i className="fas fa-sun"></i>
+          <FaSun color="#FDD835" size="20" />
         </span>
         <span>
-          <i className="fas fa-moon"></i>
+          <FaMoon color="#FDD835" size="20" />
         </span>
       </StyledSwith>
     </ContainerSwitch>

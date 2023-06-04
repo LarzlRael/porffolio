@@ -6,7 +6,7 @@ import { ThemeContext } from '../context/ThemeContext'
 import { sizeMedia } from '../styles/mediaQuery'
 import { ThemeColors } from '../context/themeColors'
 
-export const WhoAmIm = () => {
+export const WhoAmI = () => {
   const { themeColors } = useContext(ThemeContext)
   return (
     <WhoIamContainer themeColors={themeColors}>
@@ -16,6 +16,7 @@ export const WhoAmIm = () => {
       <p
         style={{
           textAlign: 'center',
+          fontSize:'16px'
         }}
       >
         <FormattedMessage id="app.about" />

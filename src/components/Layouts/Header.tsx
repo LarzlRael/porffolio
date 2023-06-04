@@ -37,7 +37,7 @@ export const Header = () => {
           </div>
 
           <div className="menuicon" onClick={toogleMenu ? closeMenu : openMenu}>
-            <IoMenu color={'#FFFFFF'} height="45px" width="45px" />
+            <IoMenu color="#FFFFFF" size="40" />
           </div>
         </div>
 

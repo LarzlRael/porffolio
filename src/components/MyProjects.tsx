@@ -18,28 +18,42 @@ export const MyProjects = ({ formattedMessageid, idHref, projects }: Props) => {
   const { themeColors } = useContext(ThemeContext)
   return (
     <MyProjectsStyles id={idHref} themeColors={themeColors}>
-      <div className="title">
-        <h2
-          style={{
-            color: themeColors.titleColor,
-          }}
-        >
-          <FormattedMessage id={formattedMessageid} />
-        </h2>
-        {idHref === 'apps' ? (
-          <img
-            src="https://img.icons8.com/material-rounded/50/666666/ios-development.png"
-            alt=""
-          />
-        ) : (
-          <img src="./web11.png" alt="" />
-        )}
-      </div>
+      <TitleAndImage
+        key={idHref}
+        formattedMessageid={formattedMessageid}
+        imageSrc="https://img.icons8.com/material-rounded/50/666666/ios-development.png"
+        themeColors={themeColors}
+      />
 
       <MyProjectsGrid projectsState={projects} />
     </MyProjectsStyles>
   )
 }
+
+interface PropsTitleAndImage {
+  formattedMessageid: string
+  imageSrc: string
+  themeColors: ThemeColors
+}
+export const TitleAndImage = ({
+  formattedMessageid,
+  imageSrc,
+  themeColors,
+}: PropsTitleAndImage) => {
+  return (
+    <div className="title">
+      <h2
+        style={{
+          color: themeColors.titleColor,
+        }}
+      >
+        <FormattedMessage id={formattedMessageid} />
+      </h2>
+      <img src={imageSrc} alt="" />
+    </div>
+  )
+}
+
 interface MyProjectsGridProps {
   projectsState: ProjectsResponse[]
 }
@@ -173,25 +187,3 @@ const WorkGridContainer = styled.div`
     width: 90%;
   }
 `
-
-/* const ImageContainer = styled.div`
-    width: 100%;
-    height: 235px;
-    position: relative;
-    img{
-        width: 100%;
-        height: 235px;
-        border-radius: 5px;
-        overflow: hidden;
-        transition: transform .5s, visibility .5s ease-in;
-    &:hover{
-        transform: scale(1.1);
-        opacity: 0.4;
-    }
-    div{
-        width: 100px;
-        background:red;
-    }
-
-}
-`; */

@@ -15,10 +15,8 @@ function App() {
     <BackGroundColor
       themeColors={themeColors}
     >
-
       <Layout>
       </Layout>
-
     </BackGroundColor >
   );
 }

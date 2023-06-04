@@ -60,7 +60,7 @@ export const FormContact = () => {
   }
 
   return (
-    <div className="contact" id="contact">
+    <div className="FormContact" id="contact">
       <h2
         style={{
           color: themeColors.primaryColor,
@@ -71,30 +71,22 @@ export const FormContact = () => {
       <form onSubmit={onHandleSubmit}>
         <div className="flex">
           <input
-            className={!darkTheme ? 'dark' : 'light'}
             type="text"
+            className="FormContact__input"
             placeholder={intl.formatMessage({ id: 'app.name' })}
             onChange={({ target }) => onChange(target.value, 'name')}
             value={name}
-            /* outline: 'none! important'
-                        border: '1px solid red';
-                        box-s: 0 0 10px #719ECE; */
-            /* style={{
-                        outline: 'none! important',
-                        border: '1px solid red',
-                        boxShadow: '0 0 10px #719ECE;'
-                    }} */
           />
           <input
             type="email"
-            className={!darkTheme ? 'dark' : 'light'}
+            className="FormContact__input"
             placeholder={intl.formatMessage({ id: 'app.email' })}
             onChange={({ target }) => onChange(target.value, 'email')}
             value={email}
           />
         </div>
         <textarea
-          className={!darkTheme ? 'area dark' : 'area light'}
+          className="FormContact__input--area"
           placeholder={intl.formatMessage({ id: 'app.message' })}
           onChange={({ target }) => onChange(target.value, 'message')}
           value={message}

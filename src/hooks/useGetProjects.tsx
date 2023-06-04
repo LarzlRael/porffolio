@@ -35,7 +35,6 @@ export const useGetProjectsByType = (type: string = 'web') => {
 
   useEffect(() => {
     loadProjects()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return { projectsStateByType }
