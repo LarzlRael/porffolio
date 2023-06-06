@@ -11,10 +11,10 @@ import styled from 'styled-components'
 import { sizeMedia } from '../../styles/mediaQuery'
 import { useGetProjectsByType } from '../../hooks/useGetProjects'
 
-interface LayoutProps {
+/* interface LayoutProps {
   children: React.ReactNode
-}
-export const Layout = ({ children }: LayoutProps) => {
+} */
+export const Layout = () => {
   const { themeColors } = useContext(ThemeContext)
   const { projectsStateByType } = useGetProjectsByType('web')
   const { projectsStateByType: projectsStateByTypeApp } = useGetProjectsByType(

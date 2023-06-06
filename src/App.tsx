@@ -1,32 +1,8 @@
-import { useContext } from 'react';
-
-import './App.css';
-import { ThemeContext } from './context/ThemeContext';
-
-import { Layout } from './components/Layouts/Layout';
-import { ThemeColors } from './context/themeColors';
-import styled from 'styled-components';
+import './App.css'
+import Main from './router/Main'
 
 function App() {
-
-  const { themeColors } = useContext(ThemeContext);
-
-  return (
-    <BackGroundColor
-      themeColors={themeColors}
-    >
-      <Layout>
-      </Layout>
-    </BackGroundColor >
-  );
+  return <Main />
 }
 
-export default App;
-
-
-const BackGroundColor = styled.div<{
-  themeColors: ThemeColors
-}>`
-  background: ${({ themeColors }) => themeColors.background};
-  transition:.3s ease all;
-`;
+export default App

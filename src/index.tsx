@@ -1,23 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/globals.scss';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './styles/globals.scss'
 
-import App from './App';
-import { ThemeProvider } from './context/ThemeContext';
-import { LangProvider } from './context/langContext';
-
+import App from './App'
+import { ThemeProvider } from './context/ThemeContext'
+import { LangProvider } from './context/langContext'
+import { AuthProvider } from './context/AuthContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <LangProvider>
-
-        <App />
-
-      </LangProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <LangProvider>
+          <App />
+        </LangProvider>
+      </ThemeProvider>
+    </AuthProvider>
   </React.StrictMode>,
-  document.getElementById('root')
-);
-
-
+  document.getElementById('root'),
+)
