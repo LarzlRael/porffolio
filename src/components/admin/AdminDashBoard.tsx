@@ -1,23 +1,22 @@
 import { useState } from 'react'
 import './AdminDashBoard.scss'
+import { Routes, Route, Link } from 'react-router-dom'
+import { ListProyects } from './pages/ListProyects'
+import { Project } from './pages/Project'
 export const AdminDashBoard = () => {
   const [active, setActive] = useState(true)
   const dashboardItems = [
     {
       title: 'Inicio',
       icon: 'fas fa-home',
+      link: '/dashboard',
+      component: ListProyects,
     },
     {
       title: 'Proyectos',
-      icon: 'fas fa-plus',
-    },
-    {
-      title: 'Que fue',
-      icon: 'fas fa-times',
-    },
-    {
-      title: 'Dashboard3',
-      icon: 'fas fa-pencil-alt',
+      icon: 'fas fa-search',
+      link: '/dashboard/list_proyects',
+      component: Project,
     },
   ]
   const handleSidebar = () => {
@@ -39,11 +38,11 @@ export const AdminDashBoard = () => {
           </li>
           {dashboardItems.map((item, index) => (
             <li key={item.title}>
-              <a href="">
+              <Link to={item.link}>
                 <i className={item.icon}></i>
                 <span className="links_name">{item.title}</span>
                 <span className="tooltip">{item.title}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -61,7 +60,10 @@ export const AdminDashBoard = () => {
         </div>
       </div>
       <div className="home_content">
-        <div className="text">Home Content</div>
+        <Routes>
+          <Route path="/" element={<Project />} />
+          <Route path="/list_proyects" element={<ListProyects />} />
+        </Routes>
       </div>
     </div>
   )

@@ -18,9 +18,9 @@ export const ProtectedRoutes = ({ children }: any) => {
     getAction('auth/renew')
       .then((res: any) => {
         if (!validateStatus(res.status)) {
-          navigate('/ingresar')
+          navigate('/login')
         } else {
-          window.localStorage.setItem('token', res.data.token)
+          window.localStorage.setItem('token', res.data.accessToken)
           startSession()
         }
       })

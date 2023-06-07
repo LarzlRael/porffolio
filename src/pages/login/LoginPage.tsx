@@ -37,7 +37,7 @@ export const LoginPage = () => {
         if (validateStatus(res.status)) {
           window.localStorage.setItem('token', res.data.accessToken)
           startSession()
-          push('/dashboard/listar')
+          push('/dashboard')
         } else {
           setloading(false)
           return Swal.fire({
