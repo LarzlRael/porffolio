@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './AdminDashBoard.scss'
 export const AdminDashBoard = () => {
   const [active, setActive] = useState(true)
   const dashboardItems = [
     {
-      title: 'Dashboard',
+      title: 'Inicio',
       icon: 'fas fa-home',
     },
     {
-      title: 'Dashboard1',
-      icon: 'fas fa-home',
+      title: 'Proyectos',
+      icon: 'fas fa-plus',
     },
     {
-      title: 'Dashboard2',
-      icon: 'fas fa-home',
+      title: 'Que fue',
+      icon: 'fas fa-times',
     },
     {
       title: 'Dashboard3',
-      icon: 'fas fa-home',
+      icon: 'fas fa-pencil-alt',
     },
   ]
   const handleSidebar = () => {
@@ -26,16 +26,15 @@ export const AdminDashBoard = () => {
   return (
     <div className="AdminDashBoard">
       <div className={'sidebar ' + (active ? 'active' : '')}>
-        <div className="logo_content" onClick={() => handleSidebar()}>
+        <div className="logo_content pointer" onClick={() => handleSidebar()}>
           <div className="logo">
-            {/* menu bar font awesome icon */}
-            <i className="fas fa-bars" id="btn"></i>
             <div className="logo_name">Logo :D</div>
           </div>
+          <i className="fas fa-bars" id="btn" />
         </div>
         <ul className="nav_list">
           <li>
-            <i className="bx bx-search"></i>
+            <i className="fas fa-search bx-search"></i>
             <input placeholder="search..." type="text" />
           </li>
           {dashboardItems.map((item, index) => (

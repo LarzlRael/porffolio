@@ -17,6 +17,10 @@
 .sidebar.active {
     width: 240px;
 }
+.sidebar .logo_content:hover{
+    background: #1d1b31;
+    transition: all 0.5s ease;
+}
 
 .sidebar .logo_content .logo {
     color: #fff;
@@ -30,6 +34,7 @@
 }
 .sidebar.active .logo_content .logo {
     opacity: 1;
+    pointer-events: auto;
 }
 .logo_content .logo i {
     font-size: 28px;
@@ -42,8 +47,8 @@
 .sidebar #btn {
     position: absolute;
     color: #fff;
-    left: 50%;
     top: 6px;
+    left: 50%;
     font-size: 20px;
     height: 50px;
     width: 50px;
@@ -114,7 +119,7 @@
     transform: all 0.5 ease;
 }
 .sidebar ul li .bx-search:hover {
-    /* background: #fff; */
+    background: #fff;
     color: #11101d;
 }
 .sidebar ul li a {
@@ -136,7 +141,7 @@
     border-radius: 12px;
     text-align: center;
 }
-.sidebar ul li:hover {
+.sidebar ul li a:hover {
     color: #11101d;
     background: #fff;
 }
@@ -172,7 +177,7 @@
     transition: all 0.4s ease;
 }
 .sidebar.active .profile_content .profile {
-    background: #11101d;
+    background: #1d1b31;
 }
 .profile_content .profile .profile_details {
     display: flex;
