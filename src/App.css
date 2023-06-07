@@ -1,0 +1,19 @@
+:root {
+    --primary-color: #01c8b3;
+    --secondary-color: #ff8200;
+    --color-text: #49546b;
+    --dash-background: #2b2f48;
+    --dash-title-color: #424869;
+    --form-label-color: #49546b;
+    --secondary-text-hex: rgb(255, 130, 0);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+.pointer {
+    cursor: pointer;
+}

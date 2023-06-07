@@ -15,12 +15,13 @@ export const ProtectedRoutes = ({ children }: any) => {
 
   const navigate = useNavigate()
   function verifyTokenValidation() {
-    getAction('auth/verifyToken')
+    getAction('auth/renew')
       .then((res: any) => {
         if (!validateStatus(res.status)) {
           navigate('/ingresar')
         } else {
-          startSession(res.data.token)
+          window.localStorage.setItem('token', res.data.token)
+          startSession()
         }
       })
       .catch((err: any) => {

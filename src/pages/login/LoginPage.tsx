@@ -35,7 +35,8 @@ export const LoginPage = () => {
       .then((res: any) => {
         setloading(false)
         if (validateStatus(res.status)) {
-          startSession(res.data.accessToken)
+          window.localStorage.setItem('token', res.data.accessToken)
+          startSession()
           push('/dashboard/listar')
         } else {
           setloading(false)

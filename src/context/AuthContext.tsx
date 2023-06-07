@@ -1,6 +1,6 @@
 import { useState, createContext } from 'react'
 type AuthContexsProps = {
-  startSession: (token: string) => void
+  startSession: () => void
   isLogged: boolean
   logout: () => void
 }
@@ -13,15 +13,14 @@ const AuthProvider = ({ children }: any) => {
     user: '',
   })
 
-  const startSession = (token: string) => {
-    window.localStorage.setItem('token', token)
+  const startSession = () => {
     setLogged({
       ...isLogged,
       isLogged: true,
     })
   }
   const logout = () => {
-    localStorage.removeItem('token')
+    window.localStorage.removeItem('token')
     setLogged({
       ...isLogged,
       isLogged: false,

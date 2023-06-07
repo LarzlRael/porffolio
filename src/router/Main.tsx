@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom'
 import { LoginPage } from '../pages/login/LoginPage'
 import { Home } from '../pages/home/Home'
+import { ProtectedRoutes } from './ProtectedRoute'
+import { AdminDashBoard } from '../components/admin/AdminDashBoard'
 /* import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css' */
 /* import { ProtectedRoutes } from './ProtectedRoutes'
@@ -16,7 +18,18 @@ export default function Main() {
   return (
     <Router>
       <Routes>
+        <Route
+          path="/dashboard/*"
+          element={
+            <ProtectedRoutes>
+              <AdminDashBoard />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/admin" element={<AdminDashBoard />} />
+
         <Route path="/" element={<Home />} />
       </Routes>
       {/* <ToastContainer /> */}
