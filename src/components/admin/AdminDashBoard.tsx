@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './AdminDashBoard.scss'
 import { Routes, Route, Link } from 'react-router-dom'
 import { ListProyects } from './pages/ListProyects'
 import { Project } from './pages/Project'
+import { useWindowSize } from '../../hooks/useWindowsSize'
+import { AuthContext } from '../../context/AuthContext'
+import { AddOrEditProject } from './pages/AddOrEditProject'
 export const AdminDashBoard = () => {
+  const { logout } = useContext(AuthContext)
   const [active, setActive] = useState(true)
   const dashboardItems = [
     {
@@ -18,10 +22,21 @@ export const AdminDashBoard = () => {
       link: '/dashboard/list_proyects',
       component: Project,
     },
+    {
+      title: 'Agregar proyecto',
+      icon: 'fas fa-plus',
+      link: '/dashboard/form_proyects',
+      component: Project,
+    },
   ]
   const handleSidebar = () => {
     setActive(!active)
   }
+  const { windowSize } = useWindowSize()
+  useEffect(() => {
+    setActive(windowSize.width > 768)
+  }, [windowSize])
+
   return (
     <div className="AdminDashBoard">
       <div className={'sidebar ' + (active ? 'active' : '')}>
@@ -55,7 +70,9 @@ export const AdminDashBoard = () => {
                 <div className="job">Web Designer</div>
               </div>
             </div>
-            <i id="log_out" className="fas fa-sign-out-alt"></i>
+            <div className="pointer" onClick={() => logout()}>
+              <i id="log_out" className="fas fa-sign-out-alt" />
+            </div>
           </div>
         </div>
       </div>
@@ -63,6 +80,7 @@ export const AdminDashBoard = () => {
         <Routes>
           <Route path="/" element={<Project />} />
           <Route path="/list_proyects" element={<ListProyects />} />
+          <Route path="/form_proyects" element={<AddOrEditProject />} />
         </Routes>
       </div>
     </div>

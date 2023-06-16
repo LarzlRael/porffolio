@@ -17,7 +17,7 @@
 .sidebar.active {
     width: 240px;
 }
-.sidebar .logo_content:hover{
+.sidebar .logo_content:hover {
     background: #1d1b31;
     transition: all 0.5s ease;
 }
@@ -229,6 +229,10 @@
     width: calc(100% - 78px);
     left: 78px;
     transition: all 0.5s ease;
+    padding: 20px 30px;
+    /* position: relative; */
+    overflow: auto;
+    height: 100%;
 }
 .home_content .text {
     font-size: 25px;

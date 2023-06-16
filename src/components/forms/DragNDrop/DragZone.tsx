@@ -5,6 +5,7 @@ import React, { useMemo } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import './DragZone.scss'
+import styled, { CSSProperties } from 'styled-components'
 
 const baseStyle: CSSProperties = {
   flex: 1,
@@ -151,7 +152,7 @@ function DropzoneInput({
     </FlexContainer>
   )
 }
-import styled, { CSSProperties } from 'styled-components'
+
 const FlexContainer = styled.div<{
   small?: boolean
 }>`
