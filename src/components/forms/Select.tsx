@@ -17,7 +17,7 @@ export const Select = ({ label, options, ...props }: Props) => {
         {label}
       </label>
       <select className="Form__input--pyme" {...field} {...props}>
-        {options.map((option:any) => {
+        {options.map((option: any) => {
           return (
             <option key={option.key} value={option.value}>
               {option.key}
@@ -26,7 +26,11 @@ export const Select = ({ label, options, ...props }: Props) => {
         })}
       </select>
 
-      <ErrorMessage name={props.name} component="label" />
+      <ErrorMessage
+        name={props.name}
+        component="label"
+        className="Form__text-error"
+      />
     </>
   )
 }

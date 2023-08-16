@@ -6,8 +6,8 @@ import { sizeDesktop, ThemeColors } from '../context/themeColors'
 import { ThemeContext } from '../context/ThemeContext'
 import { sizeMedia } from '../styles/mediaQuery'
 
-import { IoLogoGithub, IoOpenOutline } from 'react-icons/io5'
 import { ProjectsResponse } from '../interfaces/tec.interface'
+import { ProjectCard } from './card/ProyectCard'
 
 interface Props {
   formattedMessageid: string
@@ -24,7 +24,6 @@ export const MyProjects = ({ formattedMessageid, idHref, projects }: Props) => {
         imageSrc="https://img.icons8.com/material-rounded/50/666666/ios-development.png"
         themeColors={themeColors}
       />
-
       <MyProjectsGrid projectsState={projects} />
     </MyProjectsStyles>
   )
@@ -61,66 +60,19 @@ const MyProjectsGrid = ({ projectsState }: MyProjectsGridProps) => {
   return (
     <WorkGridContainer>
       {projectsState?.map((project) => (
-        <WorksOneGrid {...project} key={project._id} />
+        <ProjectCard
+          project={project}
+          key={project._id}
+          onSelectedProject={(proyect) => {
+            window.open(proyect.urlProject, '_blank')
+          }}
+        />
       ))}
     </WorkGridContainer>
   )
 }
 
-const WorksOneGrid = ({
-  urlImageProject,
-  name,
-  urlProject,
-  repositoryUrl,
-  technologies,
-}: ProjectsResponse) => {
-  const { themeColors } = useContext(ThemeContext)
-
-  const goTo = (url: string) => {
-    window.open(url, '_blank')
-  }
-
-  return (
-    <WorksOneGridContainer themeColors={themeColors} className="pointer">
-      <div className="imageGridContainer">
-        <img
-          src={
-            urlImageProject
-              ? urlImageProject
-              : 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-no-image-available-icon-flat.jpg'
-          }
-          alt={name}
-          loading="lazy"
-        />
-        <div className="buttonsContainer">
-          <button
-            style={{
-              background: `${themeColors.primaryColor}`,
-            }}
-            onClick={() => goTo(urlProject)}
-          >
-            <FormattedMessage id="app.go" />
-            <IoOpenOutline color="white" size="20" />
-          </button>
-          <button
-            style={{
-              background: `${themeColors.primaryColor}`,
-            }}
-            onClick={() => goTo(repositoryUrl)}
-          >
-            <FormattedMessage id="app.repo" />
-            <IoLogoGithub size="20" color="white" />
-          </button>
-        </div>
-      </div>
-
-      <h3>{name}</h3>
-      <span>{technologies}</span>
-    </WorksOneGridContainer>
-  )
-}
-
-const WorksOneGridContainer = styled.div<{
+export const WorksOneGridContainer = styled.div<{
   themeColors: ThemeColors
 }>`
   width: 235px;
@@ -167,7 +119,7 @@ const MyProjectsStyles = styled.div<{
     }
   }
 `
-const WorkGridContainer = styled.div`
+export const WorkGridContainer = styled.div`
   width: ${sizeDesktop};
   margin: auto;
   display: grid;

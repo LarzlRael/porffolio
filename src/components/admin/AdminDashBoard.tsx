@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react'
 import './AdminDashBoard.scss'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, NavLink } from 'react-router-dom'
 import { ListProyects } from './pages/ListProyects'
 import { Project } from './pages/Project'
 import { useWindowSize } from '../../hooks/useWindowsSize'
 import { AuthContext } from '../../context/AuthContext'
-import { AddOrEditProject } from './pages/AddOrEditProject'
+import { EditProject } from './pages/EditProyect'
+import { AddProject } from './pages/AddProyect'
 export const AdminDashBoard = () => {
   const { logout } = useContext(AuthContext)
   const [active, setActive] = useState(true)
@@ -25,7 +26,7 @@ export const AdminDashBoard = () => {
     {
       title: 'Agregar proyecto',
       icon: 'fas fa-plus',
-      link: '/dashboard/form_proyects',
+      link: '/dashboard/add_proyect',
       component: Project,
     },
   ]
@@ -53,11 +54,16 @@ export const AdminDashBoard = () => {
           </li>
           {dashboardItems.map((item, index) => (
             <li key={item.title}>
-              <Link to={item.link}>
+              <NavLink
+                to={item.link}
+                /* className={({ isActive, isPending }) =>
+                  isActive ? 'activeItem' : ''
+                } */
+              >
                 <i className={item.icon}></i>
                 <span className="links_name">{item.title}</span>
                 <span className="tooltip">{item.title}</span>
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -78,9 +84,10 @@ export const AdminDashBoard = () => {
       </div>
       <div className="home_content">
         <Routes>
-          <Route path="/" element={<Project />} />
+          <Route path="/" element={<ListProyects />} />
           <Route path="/list_proyects" element={<ListProyects />} />
-          <Route path="/form_proyects" element={<AddOrEditProject />} />
+          <Route path="/add_proyect" element={<AddProject />} />
+          <Route path="/edit_proyect/:id" element={<EditProject />} />
         </Routes>
       </div>
     </div>

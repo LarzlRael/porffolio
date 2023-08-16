@@ -1,44 +1,50 @@
-import './Buttons.scss'
+import { FaPlus } from 'react-icons/fa'
+import ToolTip from '../boxex/ToolTip'
+import styled from 'styled-components'
 
-interface PropsFloatingActionButton {
-  onClick: () => void
+interface FloatingActionButtonProps {
+  onClick?: () => void
+  tooltipTitle: string
+  top?: string
   left?: string
   right?: string
   bottom?: string
-  top?: string
-  color?: string
-  icon?: string
-  backgroundColor?: string
-  size?: string
 }
-export const FloatingActionButton = (
-  propsFloatingActionButton: PropsFloatingActionButton,
-) => {
-  const {
-    onClick,
-    size = '30px',
-    color = 'white',
-    backgroundColor = 'blue',
-  } = propsFloatingActionButton
+
+const ButtonStyled = styled.button`
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: -0px 2px 17px -5px rgba(0, 0, 0, 0.9);
+  &:hover {
+    background-color: var(--secondary-color-hover);
+  }
+`
+export const FloatingActionButton = ({
+  onClick,
+  tooltipTitle,
+  ...props
+}: FloatingActionButtonProps) => {
   return (
-    <button
-      onClick={onClick}
-      className="div"
-      style={{
-        background: backgroundColor,
-        width: size,
-        height: size,
-        color: color,
-        position: 'fixed',
-        border: 'none',
-        borderRadius: '50%',
-        outline: 'none',
-        boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-        cursor: 'pointer',
-        ...propsFloatingActionButton,
-      }}
-    >
-      <i className="fa fa-plus" aria-hidden="true"></i>
-    </button>
+    <ToolTip content={tooltipTitle}>
+      <ButtonStyled
+        onClick={onClick}
+        className="FloatingActionButton"
+        {...props}
+      >
+        <FaPlus size={25} color="white" />
+      </ButtonStyled>
+    </ToolTip>
   )
 }
