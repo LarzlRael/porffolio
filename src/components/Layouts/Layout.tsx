@@ -26,16 +26,16 @@ export const Layout = () => {
         <Header />
       </MainLayout>
       <WhoAmI />
-      <TecnologiesGrids />
+      {/* <TecnologiesGrids /> */}
 
       <MyProjects
-        projects={projectsStateByType!}
         formattedMessageid="app.projects"
+        projects={projectsStateByType!}
         idHref="projects"
       />
       <MyProjects
-        projects={projectsStateByTypeApp!}
         formattedMessageid="app.apps"
+        projects={projectsStateByTypeApp!}
         idHref="apps"
       />
       <FormContact />

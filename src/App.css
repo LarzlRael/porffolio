@@ -1,19 +1,31 @@
 :root {
-    --primary-color: #01c8b3;
-    --secondary-color: #ff8200;
-    --color-text: #49546b;
-    --dash-background: #2b2f48;
-    --dash-title-color: #424869;
-    --form-label-color: #49546b;
-    --secondary-text-hex: rgb(255, 130, 0);
+  --primary-color: #01c8b3;
+  --secondary-color: #ff8200;
+  --color-text: #49546b;
+  --dash-background: #2b2f48;
+  --dash-title-color: #424869;
+  --form-label-color: #49546b;
+  --secondary-text-hex: rgb(255, 130, 0);
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
+}
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--dash-title-color);
+  outline: 1px solid slategrey;
 }

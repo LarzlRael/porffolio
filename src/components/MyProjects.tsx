@@ -63,9 +63,9 @@ const MyProjectsGrid = ({ projectsState }: MyProjectsGridProps) => {
         <ProjectCard
           project={project}
           key={project._id}
-          onSelectedProject={(proyect) => {
+          onSelectedProject={(proyect) =>
             window.open(proyect.urlProject, '_blank')
-          }}
+          }
         />
       ))}
     </WorkGridContainer>
