@@ -60,7 +60,6 @@ export const ProjectCard = ({
       </div>
 
       <h3>{name}</h3>
-      {/* <span>{technologies}</span> */}
     </div>
   )
 }

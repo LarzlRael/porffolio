@@ -10,12 +10,18 @@ import { ThemeContext } from '../../context/ThemeContext'
 import { LinksMenuNavigation } from '../LinksMenuNavigation'
 import { sizeMedia } from '../../styles/mediaQuery'
 import { sizeDesktop, ThemeColors } from '../../context/themeColors'
+import { FaSun, FaMoon } from 'react-icons/fa'
 
 export const Header = () => {
   const { changeLan } = useContext(LangContext)
-  const { toogleMenu, closeMenu, openMenu, themeColors } = useContext(
-    ThemeContext,
-  )
+  const {
+    toogleMenu,
+    closeMenu,
+    openMenu,
+    themeColors,
+    isDarkTheme,
+    changeTheme,
+  } = useContext(ThemeContext)
 
   return (
     <HeaderContainer>
@@ -50,7 +56,13 @@ export const Header = () => {
           <FormattedMessage id="app.job" />
         </h3>
       </NamePresentation>
-      <Switch />
+      <Switch
+        leftIcon={<FaSun color="#FDD835" size="20" />}
+        rightIcon={<FaMoon color="#FDD835" size="20" />}
+        isActive={isDarkTheme}
+        handleToggle={changeTheme}
+        themeColors={themeColors}
+      />
       <ProfileImage size={150} themeColors={themeColors}>
         <img
           src="https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg"

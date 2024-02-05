@@ -3,7 +3,7 @@ import { lightColorsTheme, ThemeColors, darkColorsTheme } from './themeColors'
 
 type AuthContexsProps = {
   changeTheme: () => void
-  darkTheme: boolean
+  isDarkTheme: boolean
   toogleMenu: boolean
   themeColors: ThemeColors
   closeMenu: () => void
@@ -22,7 +22,7 @@ const ThemeProvider = ({ children }: any) => {
     themeState = false
   }
 
-  const [darkTheme, setDarkTheme] = useState(themeState)
+  const [isDarkTheme, setIsDarkTheme] = useState(themeState)
   const [toogleMenu, SetToogleMenu] = useState(true)
   /*  */
   const [themeColors, setThemeColors] = useState<ThemeColors>(
@@ -30,13 +30,13 @@ const ThemeProvider = ({ children }: any) => {
   )
 
   const changeTheme = () => {
-    setDarkTheme(!darkTheme)
-    if (darkTheme) {
+    setIsDarkTheme(!isDarkTheme)
+    if (isDarkTheme) {
       setThemeColors(darkColorsTheme)
     } else {
       setThemeColors(lightColorsTheme)
     }
-    localStorage.setItem('dark-mode', JSON.stringify(!darkTheme))
+    localStorage.setItem('dark-mode', JSON.stringify(!isDarkTheme))
   }
   const closeMenu = () => {
     SetToogleMenu(false)
@@ -48,7 +48,7 @@ const ThemeProvider = ({ children }: any) => {
     <ThemeContext.Provider
       value={{
         changeTheme,
-        darkTheme,
+        isDarkTheme,
         toogleMenu,
         closeMenu,
         openMenu,

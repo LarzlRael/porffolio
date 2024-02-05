@@ -16,7 +16,7 @@ export const WhoAmI = () => {
       <p
         style={{
           textAlign: 'center',
-          fontSize:'16px'
+          fontSize: '18px',
         }}
       >
         <FormattedMessage id="app.about" />

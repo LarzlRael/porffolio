@@ -1,38 +1,36 @@
-import { useContext, useState } from 'react'
 import styled from 'styled-components'
-import { ThemeContext } from '../../context/ThemeContext'
 import { ThemeColors } from '../../context/themeColors'
 import { sizeMedia } from '../../styles/mediaQuery'
-import { FaSun, FaMoon } from 'react-icons/fa'
-export const Switch = () => {
-  const { themeColors, changeTheme, darkTheme } = useContext(ThemeContext)
-  const [activeSwich, setActiveSwich] = useState(darkTheme)
 
-  const swithChangeTheme = () => {
-    changeTheme()
-    setActiveSwich(!activeSwich)
-  }
-
+interface SwitchProps {
+  isActive: boolean
+  handleToggle: () => void
+  rightIcon: React.ReactNode
+  leftIcon: React.ReactNode
+  themeColors: ThemeColors
+}
+export const Switch = ({
+  isActive,
+  handleToggle,
+  leftIcon,
+  rightIcon,
+  themeColors,
+}: SwitchProps) => {
   return (
     <ContainerSwitch>
       <StyledSwith
-        className={activeSwich ? 'active' : ''}
-        onClick={swithChangeTheme}
+        className={isActive ? 'active' : ''}
+        onClick={handleToggle}
         themeColors={themeColors}
       >
-        <span>
-          <FaSun color="#FDD835" size="20" />
-        </span>
-        <span>
-          <FaMoon color="#FDD835" size="20" />
-        </span>
+        <span>{leftIcon}</span>
+        <span>{rightIcon}</span>
       </StyledSwith>
     </ContainerSwitch>
   )
 }
 
 const ContainerSwitch = styled.div`
-  /* width: 55px; */
   position: absolute;
   right: 0;
 `

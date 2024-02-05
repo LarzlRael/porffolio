@@ -9,7 +9,7 @@ import { IoRefreshCircleOutline } from 'react-icons/io5'
 
 export const FormContact = () => {
   const intl = useIntl()
-  const { themeColors, darkTheme } = useContext(ThemeContext)
+  const { themeColors, isDarkTheme: darkTheme } = useContext(ThemeContext)
 
   const { email, name, message, onChange } = useForm({
     email: '',
