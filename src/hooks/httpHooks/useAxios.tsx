@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios, { AxiosRequestConfig, AxiosResponseHeaders } from 'axios'
+import { API_URL } from '../../config/config'
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
+axios.defaults.baseURL = API_URL
+/* REACT_APP_SERVER_URL */
 
 const instancia = axios.create()
 

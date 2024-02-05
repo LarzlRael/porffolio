@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { API_URL } from '../config/config'
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
+axios.defaults.baseURL = API_URL
 
 axios.interceptors.request.use(
   (config) => {

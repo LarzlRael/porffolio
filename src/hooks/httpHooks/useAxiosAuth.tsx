@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios, { AxiosRequestConfig, AxiosResponseHeaders } from 'axios'
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
+import { API_URL } from '../../config/config'
+axios.defaults.baseURL = API_URL
 
 axios.interceptors.request.use(
   (config) => {
