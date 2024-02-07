@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import styled from 'styled-components'
 import { FormattedMessage } from 'react-intl'
 import { sizeDesktop, ThemeColors } from '../context/themeColors'
@@ -8,6 +7,8 @@ import { sizeMedia } from '../styles/mediaQuery'
 
 import { ProjectsResponse } from '../interfaces/tec.interface'
 import { ProjectCard } from './card/ProyectCard'
+import { validateArray } from '../utils/utils'
+import { useThemeStore } from '../store/useThemeStore'
 
 interface Props {
   formattedMessageid: string
@@ -15,17 +16,24 @@ interface Props {
   projects: ProjectsResponse[]
 }
 export const MyProjects = ({ formattedMessageid, idHref, projects }: Props) => {
-  const { themeColors } = useContext(ThemeContext)
+  const themeColors = useThemeStore((state) => state.themeColors)
+
   return (
-    <MyProjectsStyles id={idHref} themeColors={themeColors}>
-      <TitleAndImage
-        key={idHref}
-        formattedMessageid={formattedMessageid}
-        imageSrc="https://img.icons8.com/material-rounded/50/666666/ios-development.png"
-        themeColors={themeColors}
-      />
-      <MyProjectsGrid projectsState={projects} />
-    </MyProjectsStyles>
+    <>
+      {!validateArray(projects) ? (
+        <div></div>
+      ) : (
+        <MyProjectsStyles id={idHref} themeColors={themeColors}>
+          <TitleAndImage
+            key={idHref}
+            formattedMessageid={formattedMessageid}
+            imageSrc="https://img.icons8.com/material-rounded/50/666666/ios-development.png"
+            themeColors={themeColors}
+          />
+          <MyProjectsGrid projectsState={projects} />
+        </MyProjectsStyles>
+      )}
+    </>
   )
 }
 
@@ -123,7 +131,7 @@ export const WorkGridContainer = styled.div`
   width: ${sizeDesktop};
   margin: auto;
   display: grid;
-  gap: 3.7rem;
+  gap: 8rem;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 
   @media ${sizeMedia('xs')} {

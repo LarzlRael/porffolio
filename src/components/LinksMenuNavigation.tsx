@@ -1,15 +1,24 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import { ThemeContext } from '../context/ThemeContext'
 import { ThemeColors } from '../context/themeColors'
 import { sizeMedia } from '../styles/mediaQuery'
 import { useWindowSize } from '../hooks/useWindowsSize'
+import { useThemeStore } from '../store/useThemeStore'
 
 export const LinksMenuNavigation = () => {
-  const { themeColors, toogleMenu, openMenu, closeMenu } = useContext(
-    ThemeContext,
-  )
+  const [
+    themeColors,
+    toogleMenu,
+    openMenu,
+    closeMenu,
+  ] = useThemeStore((state) => [
+    state.themeColors,
+    state.toogleMenu,
+    state.openMenu,
+    state.closeMenu,
+  ])
 
   const { windowSize } = useWindowSize()
 
@@ -34,10 +43,10 @@ export const LinksMenuNavigation = () => {
       hash: '#home',
       text: 'app.home',
     },
-    {
+    /* {
       hash: '#tecnologies',
       text: 'app.technologies',
-    },
+    }, */
     {
       hash: '#projects',
       text: 'app.projects',

@@ -1,12 +1,11 @@
-import { useContext } from 'react'
-
 import styled from 'styled-components'
 import { Layout } from '../../components/Layouts/Layout'
 import { ThemeColors } from '../../context/themeColors'
 import { ThemeContext } from '../../context/ThemeContext'
+import { useThemeStore } from '../../store/useThemeStore'
 
 export const Home = () => {
-  const { themeColors } = useContext(ThemeContext)
+  const themeColors = useThemeStore((state) => state.themeColors)
 
   return (
     <BackGroundColor themeColors={themeColors}>
@@ -15,7 +14,7 @@ export const Home = () => {
   )
 }
 
-const BackGroundColor = styled.div<{
+export const BackGroundColor = styled.div<{
   themeColors: ThemeColors
 }>`
   background: ${({ themeColors }) => themeColors.background};

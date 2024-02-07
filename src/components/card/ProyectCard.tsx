@@ -1,9 +1,8 @@
-import { useContext } from 'react'
-
 import { ProjectsResponse } from '../../interfaces/tec.interface'
-
 import { ThemeContext } from '../../context/ThemeContext'
-import { FaTimes, FaTimesCircle } from 'react-icons/fa'
+import { FaTimesCircle } from 'react-icons/fa'
+import { H2 } from '../text'
+import { useThemeStore } from '../../store/useThemeStore'
 interface PropsProjectCard {
   project: ProjectsResponse
   onSelectedProject?: (project: ProjectsResponse) => void
@@ -15,7 +14,11 @@ export const ProjectCard = ({
   project: projectsResponse,
   onHandleDelete,
 }: PropsProjectCard) => {
-  const { themeColors } = useContext(ThemeContext)
+  const [themeColors, isDarkMode] = useThemeStore((state) => [
+    state.themeColors,
+    state.isDarkMode,
+  ])
+
   const {
     urlImageProject,
     name,
@@ -59,7 +62,13 @@ export const ProjectCard = ({
         )}
       </div>
 
-      <h3>{name}</h3>
+      <H2
+        margin="0.5rem 0rem"
+        fontSize="1.4rem"
+        color={!isDarkMode ? '#fff' : '#000'}
+      >
+        {name}
+      </H2>
     </div>
   )
 }

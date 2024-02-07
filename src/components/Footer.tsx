@@ -1,10 +1,9 @@
-import { useContext } from 'react'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 
-import { ThemeContext } from '../context/ThemeContext'
 import { ThemeColors } from '../context/themeColors'
 import { sizeMedia } from '../styles/mediaQuery'
+import { useThemeStore } from '../store/useThemeStore'
 
 const linkedin = '/linkedin.png'
 const github = '/github.png'
@@ -35,7 +34,7 @@ const SocialGridData: PropsSocial[] = [
 ]
 
 export const Footer = () => {
-  const { themeColors } = useContext(ThemeContext)
+  const themeColors = useThemeStore((state) => state.themeColors)
 
   return (
     <FooterContainer themeColors={themeColors}>

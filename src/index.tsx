@@ -7,7 +7,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import { LangProvider } from './context/langContext'
 import { AuthProvider } from './context/AuthContext'
 
-ReactDOM.render(
+/* ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <ThemeProvider>
@@ -16,6 +16,15 @@ ReactDOM.render(
         </LangProvider>
       </ThemeProvider>
     </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+)
+ */
+ReactDOM.render(
+  <React.StrictMode>
+    <LangProvider>
+      <App />
+    </LangProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

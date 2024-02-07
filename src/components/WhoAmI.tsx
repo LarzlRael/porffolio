@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { FormattedMessage } from 'react-intl'
 
 import { ThemeContext } from '../context/ThemeContext'
 import { sizeMedia } from '../styles/mediaQuery'
 import { ThemeColors } from '../context/themeColors'
+import { useThemeStore } from '../store/useThemeStore'
 
 export const WhoAmI = () => {
-  const { themeColors } = useContext(ThemeContext)
+  const themeColors = useThemeStore((state) => state.themeColors)
   return (
     <WhoIamContainer themeColors={themeColors}>
       <h3>

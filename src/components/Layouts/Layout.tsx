@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import { Header } from './Header'
 import { WhoAmI } from '../WhoAmI'
 import { TecnologiesGrids } from '../TecnologiesGrids'
@@ -10,12 +9,13 @@ import { Footer } from '../Footer'
 import styled from 'styled-components'
 import { sizeMedia } from '../../styles/mediaQuery'
 import { useGetProjectsByType } from '../../hooks/useGetProjects'
+import { useThemeStore } from '../../store/useThemeStore'
 
 /* interface LayoutProps {
   children: React.ReactNode
 } */
 export const Layout = () => {
-  const { themeColors } = useContext(ThemeContext)
+  const themeColors = useThemeStore((state) => state.themeColors)
   const { projectsStateByType } = useGetProjectsByType('web')
   const { projectsStateByType: projectsStateByTypeApp } = useGetProjectsByType(
     'app',

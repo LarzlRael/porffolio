@@ -1,15 +1,19 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import './AdminDashBoard.scss'
 import { Routes, Route, Link, NavLink } from 'react-router-dom'
 import { ListProyects } from './pages/ListProyects'
 import { Project } from './pages/Project'
 import { useWindowSize } from '../../hooks/useWindowsSize'
-import { AuthContext } from '../../context/AuthContext'
 import { EditProject } from './pages/EditProyect'
 import { AddProject } from './pages/AddProyect'
+import { useAuthStore } from '../../store/useAuthStore'
+import { RelativeContainer } from '../containers/containers'
+import { useThemeStore } from '../../store/useThemeStore'
 export const AdminDashBoard = () => {
-  const { logout } = useContext(AuthContext)
   const [active, setActive] = useState(true)
+  const { logout } = useAuthStore((state) => state)
+  const themeColors = useThemeStore((state) => state.themeColors)
+
   const dashboardItems = [
     {
       title: 'Inicio',
@@ -30,16 +34,19 @@ export const AdminDashBoard = () => {
       component: Project,
     },
   ]
-  const handleSidebar = () => {
-    setActive(!active)
-  }
+  const handleSidebar = () => setActive(!active)
+
   const { windowSize } = useWindowSize()
   useEffect(() => {
     setActive(windowSize.width > 768)
   }, [windowSize])
 
   return (
-    <div className="AdminDashBoard">
+    <RelativeContainer
+      minHeight="100vh"
+      width="100%"
+      background={themeColors.background}
+    >
       <div className={'sidebar ' + (active ? 'active' : '')}>
         <div className="logo_content pointer" onClick={() => handleSidebar()}>
           <div className="logo">
@@ -72,11 +79,11 @@ export const AdminDashBoard = () => {
             <div className="profile_details">
               {/* <img src="" alt="" /> */}
               <div className="name_job">
-                <div className="name">Reynaldo</div>
-                <div className="job">Web Designer</div>
+                <div className="name">Larz Dev</div>
+                <div className="job">Full Stack developer </div>
               </div>
             </div>
-            <div className="pointer" onClick={() => logout()}>
+            <div className="pointer" onClick={logout}>
               <i id="log_out" className="fas fa-sign-out-alt" />
             </div>
           </div>
@@ -90,6 +97,6 @@ export const AdminDashBoard = () => {
           <Route path="/edit_proyect/:id" element={<EditProject />} />
         </Routes>
       </div>
-    </div>
+    </RelativeContainer>
   )
 }

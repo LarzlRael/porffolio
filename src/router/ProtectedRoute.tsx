@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+
 
 import { Navigate, useNavigate } from 'react-router-dom'
 
@@ -6,11 +6,12 @@ import { getAction } from '../provider/action/ActionAuthorization'
 import { useEffect, useState } from 'react'
 import { validateStatus } from '../utils/utils'
 
-import { AuthContext } from '../context/AuthContext'
 import LoadingWihLogo from '../components/loadings/LoadingWithLogo'
+import { useAuthStore } from '../store/useAuthStore'
 
 export const ProtectedRoutes = ({ children }: any) => {
-  const { isLogged, startSession } = useContext(AuthContext)
+  const { isLogged, startSession } = useAuthStore((state) => state)
+
   const [isTokenVerified, setIsTokenVerified] = useState(false)
 
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ export const ProtectedRoutes = ({ children }: any) => {
         }
       })
       .catch((err: any) => {
-        navigate('/ingresar')
+        navigate('/login')
       })
       .finally(() => {
         setIsTokenVerified(true)

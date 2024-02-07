@@ -1,15 +1,20 @@
 import { useIntl, FormattedMessage } from 'react-intl'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { ThemeContext } from '../context/ThemeContext'
 import { useForm } from '../hooks/useForm'
 import { serverAPI } from '../api/server'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer, toast } from 'react-toastify'
 import { IoRefreshCircleOutline } from 'react-icons/io5'
+import { useThemeStore } from '../store/useThemeStore'
 
 export const FormContact = () => {
   const intl = useIntl()
-  const { themeColors, isDarkTheme: darkTheme } = useContext(ThemeContext)
+
+  const [themeColors, isDarkMode] = useThemeStore((state) => [
+    state.themeColors,
+    state.isDarkMode,
+  ])
 
   const { email, name, message, onChange } = useForm({
     email: '',
@@ -93,7 +98,7 @@ export const FormContact = () => {
         ></textarea>
         <div className="button-container">
           <button
-            className={`buttonSend pointer ${darkTheme ? 'light' : 'dark'}`}
+            className={`buttonSend pointer ${isDarkMode ? 'light' : 'dark'}`}
             disabled={sending}
           >
             {!sending ? (

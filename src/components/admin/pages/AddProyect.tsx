@@ -21,7 +21,7 @@ export const AddProject = () => {
   const onSubmit = (data: any) => {
     console.log(data)
 
-    postAction(`/projects/`, data)
+    postAction(`/projects/create`, data)
       .then((res: any) => {
         setloadingProyect(false)
         if (validateStatus(res.status)) {

@@ -6,4 +6,3 @@ interface DashboardContentProps {
 export const DashboardContent = ({ children }: DashboardContentProps) => {
   return <div className="DashboardContent">{children}</div>
 }
-

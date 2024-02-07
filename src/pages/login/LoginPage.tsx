@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Formik, Form } from 'formik'
 import './LoginPage.scss'
 import { useNavigate } from 'react-router-dom'
@@ -9,10 +9,16 @@ import { validateStatus } from '../../utils/utils'
 /* import './../../styles/_media.scss' */
 import { Button } from '../../components/Buttons/Button'
 import { postAction } from '../../provider/action/ActionAuthorization'
-import { AuthContext } from '../../context/AuthContext'
+
 import Swal from 'sweetalert2'
+import { useAuthStore, useThemeStore } from '../../store/store'
+import { H2 } from '../../components/text'
 export const LoginPage = () => {
-  const { isLogged, startSession } = useContext(AuthContext)
+  const [isLogged, startSession] = useAuthStore((state) => [
+    state.isLogged,
+    state.startSession,
+  ])
+  const themeColors = useThemeStore((state) => state.themeColors)
 
   const [loading, setloading] = useState(false)
   const push = useNavigate()
@@ -68,7 +74,9 @@ export const LoginPage = () => {
           <Form className="Form__login">
             {/* <h3 className="Form__login--title">{appName}</h3>
             <img className="Form__login--logo" src={appLogo} alt="" /> */}
-            <h3 className="Form__login--title">Iniciar Sesion</h3>
+            <H2 className="Form__login--title" color={themeColors.primaryColor}>
+              Iniciar sesión
+            </H2>
             <label className="Form__label--pyme" htmlFor="">
               Usuario
             </label>
@@ -96,7 +104,7 @@ export const LoginPage = () => {
               <Loading />
             ) : (
               <Button
-                background="var(--secondary-color)"
+                background={themeColors.primaryColor}
                 type="submit"
                 className="button-login pointer"
                 margin="1rem 0"

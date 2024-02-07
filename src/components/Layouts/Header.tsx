@@ -11,17 +11,33 @@ import { LinksMenuNavigation } from '../LinksMenuNavigation'
 import { sizeMedia } from '../../styles/mediaQuery'
 import { sizeDesktop, ThemeColors } from '../../context/themeColors'
 import { FaSun, FaMoon } from 'react-icons/fa'
+import { useThemeStore } from '../../store/useThemeStore'
 
 export const Header = () => {
   const { changeLan } = useContext(LangContext)
-  const {
+  /* const {
     toogleMenu,
     closeMenu,
     openMenu,
     themeColors,
     isDarkTheme,
     changeTheme,
-  } = useContext(ThemeContext)
+  } = useContext(ThemeContext) */
+  const [
+    toogleMenu,
+    closeMenu,
+    openMenu,
+    themeColors,
+    isDarkMode,
+    toogleTheme,
+  ] = useThemeStore((state) => [
+    state.toogleMenu,
+    state.closeMenu,
+    state.openMenu,
+    state.themeColors,
+    state.isDarkMode,
+    state.toogleTheme,
+  ])
 
   return (
     <HeaderContainer>
@@ -59,8 +75,8 @@ export const Header = () => {
       <Switch
         leftIcon={<FaSun color="#FDD835" size="20" />}
         rightIcon={<FaMoon color="#FDD835" size="20" />}
-        isActive={isDarkTheme}
-        handleToggle={changeTheme}
+        isActive={isDarkMode}
+        handleToggle={toogleTheme}
         themeColors={themeColors}
       />
       <ProfileImage size={150} themeColors={themeColors}>

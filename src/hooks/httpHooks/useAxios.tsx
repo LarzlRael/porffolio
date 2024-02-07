@@ -5,7 +5,9 @@ import { API_URL } from '../../config/config'
 axios.defaults.baseURL = API_URL
 /* REACT_APP_SERVER_URL */
 
-const instancia = axios.create()
+const instancia = axios.create({
+  baseURL: API_URL,
+})
 
 const useAxios = <T extends object>(axiosParams: AxiosRequestConfig) => {
   const [response, setResponse] = useState<T>((null as unknown) as T)

@@ -9,14 +9,16 @@ interface FloatingActionButtonProps {
   left?: string
   right?: string
   bottom?: string
+  background?: string
 }
 
-const ButtonStyled = styled.button`
+const ButtonStyled = styled.button<FloatingActionButtonProps>`
   position: fixed;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: var(--secondary-color);
+  background-color: ${({ background }) =>
+    background || 'var(--secondary-color)'};
   bottom: 1rem;
   right: 1rem;
   display: flex;
@@ -31,15 +33,11 @@ const ButtonStyled = styled.button`
     background-color: var(--secondary-color-hover);
   }
 `
-export const FloatingActionButton = ({
-  onClick,
-  tooltipTitle,
-  ...props
-}: FloatingActionButtonProps) => {
+export const FloatingActionButton = (props: FloatingActionButtonProps) => {
   return (
-    <ToolTip content={tooltipTitle}>
+    <ToolTip content={props.tooltipTitle}>
       <ButtonStyled
-        onClick={onClick}
+        onClick={props.onClick}
         className="FloatingActionButton"
         {...props}
       >

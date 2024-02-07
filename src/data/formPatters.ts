@@ -32,6 +32,13 @@ export const projectsAddOrEditForm: InputJsonI[] = [
     label: 'Tecnologias del proyecto',
     initialValue: '',
   },
+  {
+    type: 'checkbox',
+    name: 'isPublic',
+    placeholder: 'Ingrese las tecnologias del proyecto',
+    label: 'Público',
+    initialValue: '',
+  },
 
   {
     type: 'select',

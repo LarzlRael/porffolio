@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 import { lightColorsTheme, ThemeColors, darkColorsTheme } from './themeColors'
 
 type AuthContexsProps = {
@@ -13,30 +13,32 @@ type AuthContexsProps = {
 const ThemeContext = createContext({} as AuthContexsProps)
 
 const ThemeProvider = ({ children }: any) => {
-  let themeState: boolean
-  if (localStorage.getItem('dark-mode') === 'true') {
-    document.body.classList.add('dark')
-    themeState = true
-  } else {
-    document.body.classList.remove('dark')
-    themeState = false
-  }
-
-  const [isDarkTheme, setIsDarkTheme] = useState(themeState)
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
   const [toogleMenu, SetToogleMenu] = useState(true)
+
   /*  */
   const [themeColors, setThemeColors] = useState<ThemeColors>(
-    themeState ? lightColorsTheme : darkColorsTheme,
+    isDarkTheme ? darkColorsTheme : lightColorsTheme,
   )
+  useEffect(() => {
+    console.log(isDarkTheme, 'isDarkTheme')
+    console.log(localStorage.getItem('dark-mode'))
+    if (localStorage.getItem('dark-mode') === 'true') {
+      setIsDarkTheme(true)
+    } else {
+      setIsDarkTheme(false)
+    }
+    setThemeColors(isDarkTheme ? darkColorsTheme : lightColorsTheme)
+  }, [])
 
   const changeTheme = () => {
-    setIsDarkTheme(!isDarkTheme)
-    if (isDarkTheme) {
-      setThemeColors(darkColorsTheme)
-    } else {
-      setThemeColors(lightColorsTheme)
-    }
-    localStorage.setItem('dark-mode', JSON.stringify(!isDarkTheme))
+    const newIsDarkTheme = !isDarkTheme
+    setIsDarkTheme(newIsDarkTheme)
+
+    const newThemeColors = newIsDarkTheme ? darkColorsTheme : lightColorsTheme
+    setThemeColors(newThemeColors)
+
+    localStorage.setItem('dark-mode', JSON.stringify(newIsDarkTheme))
   }
   const closeMenu = () => {
     SetToogleMenu(false)

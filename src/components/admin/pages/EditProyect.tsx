@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { GlobalForm } from '../../forms/GlobalForm'
 import { projectsAddOrEditForm } from '../../../data/formPatters'
-import { DashboardContent } from '../../Layouts/DashboardContent'
 import { useNavigate, useParams } from 'react-router-dom'
-import { FloatingActionButton } from '../../Buttons/FloatingActionButton'
+
 import { ProjectsResponse } from '../../../interfaces/tec.interface'
 import useAxios from '../../../hooks/httpHooks/useAxios'
 import LoadingWihLogo from '../../loadings/LoadingWithLogo'
@@ -14,10 +13,13 @@ import {
   putAction,
 } from '../../../provider/action/ActionAuthorization'
 import { validateStatus } from '../../../utils/utils'
+import BackIcon from '../../boxex/BackIcon'
+import { RelativeContainer } from '../../containers/containers'
 
 export const EditProject = () => {
   const { id } = useParams()
   const navigator = useNavigate()
+
   const [loadingProyect, setloadingProyect] = useState(false)
   const onSubmit = (data: any) => {
     putAction(`/projects/${response._id}`, data)
@@ -45,11 +47,12 @@ export const EditProject = () => {
       })
   }
   const { response, loading, reload, error } = useAxios<ProjectsResponse>({
-    url: `/projects/getProject/${id}`,
+    url: `/projects/get_proyect/${id}`,
     method: 'GET',
   })
   return (
-    <DashboardContent>
+    <RelativeContainer>
+      <BackIcon onClick={() => navigator(-1)} />
       {loading ? (
         <LoadingWihLogo />
       ) : (
@@ -67,13 +70,16 @@ export const EditProject = () => {
             titleButton="Guardar"
           />
 
-          {response && <ProjectCard project={response} 
-          onSelectedProject={(project) => {
-            window.open(project.urlProject, '_blank')
-          }}
-          />}
+          {response && (
+            <ProjectCard
+              project={response}
+              onSelectedProject={(project) => {
+                window.open(project.urlProject, '_blank')
+              }}
+            />
+          )}
         </BoxFlex>
       )}
-    </DashboardContent>
+    </RelativeContainer>
   )
 }
